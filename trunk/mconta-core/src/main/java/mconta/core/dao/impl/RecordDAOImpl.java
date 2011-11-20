@@ -1,11 +1,12 @@
-package mconta.core.dao;
+package mconta.core.dao.impl;
+
+import mconta.core.dao.RecordDAO;
+import mconta.core.persistence.Record;
 
 import org.springframework.stereotype.Repository;
 
-import mconta.core.persistence.Record;
-
 @Repository(value = "recordDAO")
-public class RecordDAOImpl extends GenericDAOImpl<Record> 
+public class RecordDAOImpl extends CrudDAOImpl<Record> 
 		implements RecordDAO {
 	
 	@Override

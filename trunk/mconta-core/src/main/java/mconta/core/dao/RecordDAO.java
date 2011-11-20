@@ -9,6 +9,6 @@ import mconta.core.persistence.Record;
  * @author Marc
  *
  */
-public interface RecordDAO extends GenericDAO<Record> {
-	
+public interface RecordDAO extends CrudDAO<Record> {
+
 }

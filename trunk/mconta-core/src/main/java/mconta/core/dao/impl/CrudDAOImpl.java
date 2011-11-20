@@ -1,20 +1,23 @@
 /**
  * 
  */
-package mconta.core.dao;
+package mconta.core.dao.impl;
 
 import java.util.List;
+
+import mconta.core.dao.CrudDAO;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Marc
  *
  */
-public abstract class GenericDAOImpl<Type> 
-		extends HibernateDaoSupport implements GenericDAO<Type> {
+public abstract class CrudDAOImpl<Type> 
+		extends HibernateDaoSupport implements CrudDAO<Type> {
 		
 	protected Class<Type> domainClass = getDomainClass();
     
@@ -26,7 +29,9 @@ public abstract class GenericDAOImpl<Type>
     }
     	
 	@Override
+	@Transactional
 	public void save(Type entity) throws Exception {
+		getHibernateTemplate().persist(entity);
 		getHibernateTemplate().save(entity);
 		
 	}
