@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<!-- Add Support for Spring -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+  	</listener>
+
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>recordServlet</servlet-name>
+    <servlet-class>mconta.web.server.RecordServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>recordServlet</servlet-name>
+    <url-pattern>/Mconta/recordService</url-pattern>
+  </servlet-mapping>
+
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Mconta.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
