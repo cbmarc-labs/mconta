@@ -38,9 +38,7 @@ public class MainViewImpl extends Composite implements MainView {
 	@UiField TextBox titleField;
 	@UiField Button acceptButton;
 	@UiField HTMLPanel listGrid;
-	
-	@UiField(provided = true)
-	DataGrid<Record> contactList;
+	//@UiField(provided = true) DataGrid<Record> contactList;
 
 	public MainViewImpl(String firstName) {
 		initWidget(uiBinder.createAndBindUi(this));
