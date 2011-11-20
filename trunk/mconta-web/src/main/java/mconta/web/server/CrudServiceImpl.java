@@ -5,9 +5,7 @@ package mconta.web.server;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import mconta.core.dao.GenericDAO;
+import mconta.core.dao.CrudDAO;
 import mconta.web.client.rpc.CrudService;
 
 /**
@@ -17,27 +15,36 @@ import mconta.web.client.rpc.CrudService;
 @SuppressWarnings("serial")
 public abstract class CrudServiceImpl<Type> 
 	extends SpringRemoteServiceServlet implements CrudService<Type> {
-	
-	@Autowired
-	protected GenericDAO<Type> dao;
+		
+	protected CrudDAO<Type> dao = getDao();
+    
+    protected abstract CrudDAO<Type> getDao();
 
 	public void save(Type entity) throws Exception {
+		checkLoggedIn();
+		
 		dao.save(entity);
 		
 	}
 
 	public Type get(long id) throws Exception {
+		checkLoggedIn();
+		
 		return (Type) dao.get(id);
 		
 	}
 
 	public List<Type> getAll() throws Exception {
+		checkLoggedIn();
+		
 		List<Type> all = dao.getAll();
 		
 		return all;
 	}
 
 	public void remove(Type entity) throws Exception {
+		checkLoggedIn();
+		
 		dao.remove(entity);
 		
 	}
