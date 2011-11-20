@@ -1,26 +1,20 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:c='urn:import:com.google.gwt.user.cellview.client' xmlns:h="urn:import:com.gargoylesoftware.htmlunit.html">
+	xmlns:c='urn:import:com.google.gwt.user.cellview.client' 
+	xmlns:h="urn:import:com.gargoylesoftware.htmlunit.html">
 	<ui:style>
 		.important {
 			font-weight: bold;
 		}
 	</ui:style>
 	
-	<g:DockLayoutPanel unit="EM">
+	<g:HTMLPanel>
+		<g:TextBox ui:field="titleField"></g:TextBox>
+		<g:Button ui:field="acceptButton" text="Accept"></g:Button>
+		<g:HTMLPanel ui:field="listGrid" />
 		
-		<g:north size="100">
-			<g:HTMLPanel>
-				<g:TextBox ui:field="titleField"></g:TextBox>
-				<g:Button ui:field="acceptButton" text="Accept"></g:Button>
-				<g:HTMLPanel ui:field="listGrid" />
-			</g:HTMLPanel>
-		</g:north>
-		
-		<g:center>
-			<c:DataGrid ui:field='contactList' />
-		</g:center>
-			
-	</g:DockLayoutPanel>
+		<c:DataGrid ui:field='contactList' />
+	</g:HTMLPanel>
+	
 </ui:UiBinder> 
