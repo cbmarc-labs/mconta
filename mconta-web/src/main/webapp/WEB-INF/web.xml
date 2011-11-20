@@ -14,12 +14,12 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>recordServlet</servlet-name>
+    <servlet-name>recordService</servlet-name>
     <servlet-class>mconta.web.server.RecordServiceImpl</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>recordServlet</servlet-name>
+    <servlet-name>recordService</servlet-name>
     <url-pattern>/Mconta/recordService</url-pattern>
   </servlet-mapping>
 

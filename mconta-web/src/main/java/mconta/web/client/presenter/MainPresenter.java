@@ -6,14 +6,13 @@ package mconta.web.client.presenter;
 import java.util.List;
 
 import mconta.core.persistence.Record;
+import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.RecordService;
 import mconta.web.client.rpc.RecordServiceAsync;
 import mconta.web.client.view.MainView;
 import mconta.web.client.view.View;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
@@ -41,12 +40,7 @@ public class MainPresenter implements Presenter {
 	
 	public void doLoad() {
 		
-		service.getAll(new AsyncCallback<List<Record>>(){
-
-			public void onFailure(Throwable caught) {
-				Window.alert("ONFAILURE");
-				
-			}
+		service.getAll(new AppAsyncCallback<List<Record>>(){
 
 			public void onSuccess(List<Record> result) {
 				
@@ -76,12 +70,7 @@ public class MainPresenter implements Presenter {
 		Record record = new Record();
 		record.setTitle(view.getTextField().getValue());
 		
-		service.save(record, new AsyncCallback<Void>(){
-
-			public void onFailure(Throwable caught) {
-				Window.alert("onfailure");
-				
-			}
+		service.save(record, new AppAsyncCallback<Void>(){
 
 			public void onSuccess(Void result) {
 				doLoad();

@@ -4,13 +4,12 @@
 package mconta.web.server;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.web.context.WebApplicationContext;
+import mconta.web.shared.UserDTO;
+
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -31,5 +30,34 @@ public class SpringRemoteServiceServlet extends RemoteServiceServlet {
 				getAutowireCapableBeanFactory().
 				autowireBean(this);
 	}
-
+	
+	protected HttpServletRequest getRequest(){
+		return (HttpServletRequest)getThreadLocalRequest();
+	}
+	
+	protected HttpSession getSession(){
+		return getRequest().getSession();
+	}
+	
+	protected void checkLoggedIn() throws Exception {
+		UserDTO user = getUserSession();
+		
+		if (user.getLoggedIn() == false) {
+	    	throw new Exception("Not logged in.");
+	    	
+	    }
+	}
+	
+	protected void setUserSession(UserDTO user) {
+		if(user == null)
+			getSession().removeAttribute("user");
+		else
+			getSession().setAttribute("user", user);
+		
+	}
+	
+	protected UserDTO getUserSession() {
+		return (UserDTO) getSession().getAttribute("user");
+	}
+	
 }
