@@ -10,6 +10,13 @@
   <packaging>war</packaging>
   <name>mconta-web</name>
 
+  <parent>
+  	<groupId>mconta</groupId>
+  	<artifactId>mconta</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+	<relativePath>../mconta</relativePath>
+  </parent>
+
   <properties>
     <!-- Convenience property to set the GWT version -->
     <gwtVersion>2.4.0</gwtVersion>
@@ -94,9 +101,9 @@
 	
 	<!-- HSQLDB DRIVER -->
 	<dependency>
-    	<groupId>hsqldb</groupId>
-    	<artifactId>hsqldb</artifactId>
-    	<version>1.8.0.10</version>
+	    <groupId>org.hsqldb</groupId>
+	    <artifactId>hsqldb</artifactId>
+	    <version>2.2.6</version>
 	</dependency>
   </dependencies>
 
@@ -116,7 +123,7 @@
             <goals>
               <goal>compile</goal>
               <!-- <goal>test</goal> -->
-              <!-- <goal>i18n</goal> -->
+              <goal>i18n</goal>
               <!-- <goal>generateAsync</goal> -->
             </goals>
           </execution>
@@ -126,7 +133,9 @@
         <configuration>
           <runTarget>Mconta.html</runTarget>
           <hostedWebapp>${webappDirectory}</hostedWebapp>
-          <i18nMessagesBundle>mconta.web.client.Messages</i18nMessagesBundle>
+          <i18nMessagesBundles>
+          	<i18nMessagesBundle>mconta.web.client.Messages</i18nMessagesBundle>
+          </i18nMessagesBundles>
         </configuration>
       </plugin>
 
@@ -211,10 +220,5 @@
     	</plugins>
     </pluginManagement>
   </build>
-
-  <parent>
-  	<groupId>mconta</groupId>
-  	<artifactId>mconta</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
-  </parent>
+  
 </project>
