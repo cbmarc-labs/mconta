@@ -31,7 +31,6 @@ public abstract class CrudDAOImpl<Type>
 	@Override
 	@Transactional
 	public void save(Type entity) throws Exception {
-		getHibernateTemplate().persist(entity);
 		getHibernateTemplate().save(entity);
 		
 	}

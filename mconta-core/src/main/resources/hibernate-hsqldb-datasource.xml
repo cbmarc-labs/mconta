@@ -17,17 +17,5 @@
         <property name="password" value="" />
 
 	</bean>
-	
-	<!-- DataSource: hsqldb file 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-        <property name="url" value="jdbc:hsqldb:file:/testdb" />
-        <property name="username" value="SA" />
-        <property name="password" value="" />
-        <property name="initialSize" value="1" />
-        <property name="maxActive" value="5" />
-        <property name="poolPreparedStatements" value="true" />
-        <property name="maxOpenPreparedStatements" value="10" />
-    </bean> -->
  
 </beans>
