@@ -3,7 +3,7 @@
  */
 package mconta.web.client.rpc;
 
-import mconta.core.persistence.Record;
+import mconta.web.shared.RecordDTO;
 
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -12,6 +12,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  *
  */
 @RemoteServiceRelativePath("recordService")
-public interface RecordService extends CrudService<Record> {
+public interface RecordService extends CrudService<RecordDTO> {
 		
 }
