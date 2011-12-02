@@ -24,53 +24,32 @@
     		<artifactId>spring</artifactId>
     		<version>2.5.6</version>
 		</dependency>
-    	<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-orm</artifactId>
-    		<version>3.0.6.RELEASE</version>
-		</dependency>
+		
+		<!-- Hibernate framework -->
 		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-hibernate3</artifactId>
-    		<version>2.0.8</version>
-		</dependency>
-		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-aspects</artifactId>
-    		<version>3.0.6.RELEASE</version>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>3.6.8.Final</version>
 		</dependency>
 		
 		<dependency>
-    		<groupId>commons-dbcp</groupId>
-    		<artifactId>commons-dbcp</artifactId>
-    		<version>1.4</version>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>4.2.0.Final</version>
 		</dependency>
 		
-		<!-- HIBERNATE -->
 		<dependency>
-    		<groupId>org.hibernate</groupId>
-    		<artifactId>hibernate-annotations</artifactId>
-    		<version>3.5.6-Final</version>
-		</dependency>
-				
-		<dependency>
-    		<groupId>org.aspectj</groupId>
-    		<artifactId>aspectjrt</artifactId>
-    		<version>1.6.12</version>
+		    <groupId>org.javassist</groupId>
+		    <artifactId>javassist</artifactId>
+		    <version>3.15.0-GA</version>
 		</dependency>
 		
-    	<!-- JAVAX -->
-    	<dependency>
-    		<groupId>javax.persistence</groupId>
-    		<artifactId>persistence-api</artifactId>
-    		<version>1.0.2</version>
-		</dependency>
 		<dependency>
-    		<groupId>javax.transaction</groupId>
-    		<artifactId>jta</artifactId>
-			<version>1.1</version>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-log4j12</artifactId>
+		    <version>1.6.4</version>
 		</dependency>
-	
+
 		<!-- HSQLDB DRIVER -->
 		<dependency>
 		    <groupId>org.hsqldb</groupId>
