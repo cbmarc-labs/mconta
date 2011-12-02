@@ -1,16 +1,27 @@
 package mconta.core.persistence;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@SuppressWarnings("serial")
-public class Record implements Serializable {
+@Entity
+@Table(name = "RECORD")
+public class Record {
 	
+	@Id
+	@GeneratedValue
+	@Column(name = "REC_ID", nullable = false)
 	private Long id;
 	
+	@Column(name = "REC_TITLE", length = 100)
 	private String title;
 	
+	@Column(name = "REC_YEAR")
 	private int year;
 	
+	@Column(name = "REC_PRICE")
 	private double price;
   
 	public Record() {
