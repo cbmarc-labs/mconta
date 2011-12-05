@@ -6,47 +6,40 @@ package mconta.web.server;
 import java.util.List;
 
 import mconta.core.dao.CrudDAO;
+import mconta.core.persistence.Model;
 import mconta.web.client.rpc.CrudService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author Marc
  *
  */
 @SuppressWarnings("serial")
-public abstract class CrudServiceImpl<Type> 
-	extends SpringRemoteServiceServlet implements CrudService<Type> {
+public class CrudServiceImpl
+	extends SpringRemoteServiceServlet implements CrudService {	
 		
-	protected CrudDAO<Type> dao = getDao();
-    
-    protected abstract CrudDAO<Type> getDao();
+	@Autowired
+	protected CrudDAO<Model> dao;
 
-	public void save(Type entity) throws Exception {
-		checkLoggedIn();
-		
-		dao.save(entity);
+	public void save(Model model) throws Exception {		
+		dao.save(model);
 		
 	}
 
-	public Type get(long id) throws Exception {
-		checkLoggedIn();
-		
-		return (Type) dao.get(id);
+	public Model get(long id, String model) throws Exception {
+		return dao.get(id, model);
 		
 	}
 
-	public List<Type> getAll() throws Exception {
-		checkLoggedIn();
+	public List<Model> getAll(String model) throws Exception {		
+		List<Model> records = dao.getAll(model);
 		
-		List<Type> all = dao.getAll();
-		
-		return all;
+		return records;
 	}
 
-	public void remove(Type entity) throws Exception {
-		checkLoggedIn();
-		
-		dao.remove(entity);
+	public void remove(Model model) throws Exception {
+		dao.remove(model);
 		
 	}
-
 }
