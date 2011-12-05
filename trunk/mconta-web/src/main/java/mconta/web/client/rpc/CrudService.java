@@ -2,13 +2,17 @@ package mconta.web.client.rpc;
 
 import java.util.List;
 
-import com.google.gwt.user.client.rpc.RemoteService;
+import mconta.core.persistence.Model;
 
-public interface CrudService<Entity> extends RemoteService {
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+
+@RemoteServiceRelativePath("crudService")
+public interface CrudService extends RemoteService {
 	
-	public void save(Entity entity) throws Exception;
-	public Entity get(long id) throws Exception;
-	public List<Entity> getAll() throws Exception;
-	public void remove(Entity entity) throws Exception;
+	public void save(Model model) throws Exception;
+	public Model get(long id, String model) throws Exception;
+	public List<Model> getAll(String model) throws Exception;
+	public void remove(Model model) throws Exception;
 	
 }

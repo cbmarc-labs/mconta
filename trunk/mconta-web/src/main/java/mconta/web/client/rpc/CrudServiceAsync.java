@@ -5,17 +5,19 @@ package mconta.web.client.rpc;
 
 import java.util.List;
 
+import mconta.core.persistence.Model;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
  * @author Marc
  *
  */
-public interface CrudServiceAsync<Entity> {
+public interface CrudServiceAsync {
 	
-	void remove(Entity entity, AsyncCallback<Void> callback);
-	void getAll(AsyncCallback<List<Entity>> callback);
-	void save(Entity entity, AsyncCallback<Void> callback);
-	void get(long id, AsyncCallback<Entity> callback);
+	void remove(Model dto, AsyncCallback<Void> callback);
+	void getAll(String model, AsyncCallback<List<Model>> callback);
+	void save(Model dto, AsyncCallback<Void> callback);
+	void get(long id, String model, AsyncCallback<Model> callback);
 
 }
