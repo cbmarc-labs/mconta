@@ -6,9 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "RECORD")
-public class Record {
+public class Record implements Model {
 	
 	@Id
 	@GeneratedValue
