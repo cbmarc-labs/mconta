@@ -3,12 +3,15 @@
  */
 package mconta.web.client.presenter;
 
+import java.util.List;
+
+import mconta.core.persistence.Model;
+import mconta.core.persistence.Record;
 import mconta.web.client.rpc.AppAsyncCallback;
-import mconta.web.client.rpc.RecordService;
-import mconta.web.client.rpc.RecordServiceAsync;
+import mconta.web.client.rpc.CrudService;
+import mconta.web.client.rpc.CrudServiceAsync;
 import mconta.web.client.view.MainView;
 import mconta.web.client.view.View;
-import mconta.web.shared.RecordDTO;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -19,8 +22,8 @@ import com.google.gwt.user.client.ui.HasWidgets;
  */
 public class MainPresenter implements Presenter {
 	
-	private final RecordServiceAsync service = 
-			GWT.create(RecordService.class);
+	private final CrudServiceAsync service = 
+			GWT.create(CrudService.class);
 	
 	private final MainView view;
 	
@@ -37,21 +40,21 @@ public class MainPresenter implements Presenter {
 	}
 	
 	public void doLoad() {
-		
-		/*service.getAll(new AppAsyncCallback<List<RecordDTO>>(){
+		service.getAll(Record.class.getName(), new AppAsyncCallback<List<Model>>(){
 
-			public void onSuccess(List<RecordDTO> result) {
+		public void onSuccess(List<Model> result) {
+			
+			String out = "";
+			
+			for(int i = 0 ; i < result.size() ; i ++ ) {				
+				Record dto = (Record) result.get(i);
 				
-				String out = "";
-				
-				for(int i = 0 ; i < result.size() ; i ++ ) {
-					out += result.get(i).getTitle() + "<br>";
-				}
-				
-				view.setData(out);
-				
-			}});*/
-		
+				out += dto.getTitle() + "<br>";
+			}
+			
+			view.setData(out);
+			
+		}});
 	}
 
 	public void go(HasWidgets container) {
@@ -65,7 +68,7 @@ public class MainPresenter implements Presenter {
 	public void onButtonClicked() {
 		view.getTextField().getValue();
 		
-		RecordDTO record = new RecordDTO();
+		Record record = new Record();
 		record.setTitle(view.getTextField().getValue());
 		
 		service.save(record, new AppAsyncCallback<Void>(){
