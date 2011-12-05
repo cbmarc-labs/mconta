@@ -10,20 +10,18 @@ import mconta.core.dao.CrudDAO;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Marc
  *
  */
-public abstract class CrudDAOImpl<Type> 
+@Repository
+public class CrudDAOImpl<Type> 
 		extends HibernateDaoSupport implements CrudDAO<Type> {
-		
-	protected Class<Type> domainClass = getDomainClass();
-    
-    protected abstract Class<Type> getDomainClass();
-    
-    @Autowired
+	
+	@Autowired
     public void init(SessionFactory factory) {
         setSessionFactory(factory);
     }
@@ -43,25 +41,18 @@ public abstract class CrudDAOImpl<Type>
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Type get(long id) throws Exception {
-		return (Type)getHibernateTemplate().load(getDomainClass(), id);
+	public Type get(long id, String domainName) throws Exception {
+		return (Type)getHibernateTemplate().load(domainName, id);
 		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Type> getAll() throws Exception {
+	public List<Type> getAll(String domainName) throws Exception {
 		List<Type> all = getHibernateTemplate().
-				find("from " + domainClass.getName());
+				find("from " + domainName);
 		
 		return all;
 	}
-
-	@Override
-	public void update(Type entity) throws Exception {
-		getHibernateTemplate().update(entity);
-		
-	}
-
 
 }
