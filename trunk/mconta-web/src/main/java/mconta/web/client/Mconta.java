@@ -1,11 +1,9 @@
 package mconta.web.client;
 
 import mconta.web.client.presenter.MainPresenter;
-import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.LoginService;
 import mconta.web.client.rpc.LoginServiceAsync;
 import mconta.web.client.view.MainViewImpl;
-import mconta.web.shared.UserDTO;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
