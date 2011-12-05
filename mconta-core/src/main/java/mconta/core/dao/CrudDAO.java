@@ -12,13 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 @Transactional
-public interface CrudDAO<Type> extends DAO {
+public interface CrudDAO<Type> {
 	
-	@Transactional
 	void save(Type entity) throws Exception;
-	void update(Type entity) throws Exception;
 	void remove(Type entity) throws Exception;
-    Type get(long id) throws Exception;
-    List<Type> getAll() throws Exception;
+    Type get(long id, String domainName) throws Exception;
+    List<Type> getAll(String domainName) throws Exception;
 
 }
