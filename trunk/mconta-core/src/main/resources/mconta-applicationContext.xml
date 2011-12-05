@@ -12,7 +12,7 @@
  
 	<import resource="classpath:hsqldb-datasource.xml"/>
 	
-	<context:annotation-config />
+	<!-- <context:annotation-config /> -->
 	<context:component-scan base-package="mconta.core.dao"/>
 
 </beans>
