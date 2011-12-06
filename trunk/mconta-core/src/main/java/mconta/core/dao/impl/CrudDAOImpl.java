@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Marc
  *
  */
-@Repository
+@Repository("crudDAO")
 public class CrudDAOImpl<Type> 
 		extends HibernateDaoSupport implements CrudDAO<Type> {
 	

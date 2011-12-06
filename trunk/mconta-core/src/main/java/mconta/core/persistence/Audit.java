@@ -3,7 +3,6 @@
  */
 package mconta.core.persistence;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +10,7 @@ import java.util.Date;
  *
  */
 @SuppressWarnings("serial")
-public class Audit implements Serializable {
+public class Audit implements Model {
 	
     private Long id;
     
