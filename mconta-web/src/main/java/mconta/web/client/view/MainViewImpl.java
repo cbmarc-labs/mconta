@@ -3,15 +3,17 @@
  */
 package mconta.web.client.view;
 
+import java.util.List;
+
 import mconta.core.persistence.Record;
 import mconta.web.client.presenter.Presenter;
+import mconta.web.client.ui.MyPaginationDataGrid;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -33,26 +35,33 @@ public class MainViewImpl extends Composite implements MainView {
 	
 	public MainViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		initTable();
 	}
+	
+	MyPaginationDataGrid<Record> grid;
 
 	@UiField TextBox titleField;
 	@UiField Button acceptButton;
 	@UiField HTMLPanel listGrid;
-	//@UiField(provided = true) DataGrid<Record> contactList;
-
-	public MainViewImpl(String firstName) {
-		initWidget(uiBinder.createAndBindUi(this));
+		
+	private void initTable() {
+		grid = new MyPaginationDataGrid<Record>();
+		grid.setHeight("300px");
+		
 	}
-	
+
 	@UiHandler("acceptButton")
 	void handleClick(ClickEvent e) {
 		presenter.onButtonClicked();
 	}
 
-	public void setData(String data) {
+	public void setData(List<Record> data) {
 		listGrid.clear();
-		listGrid.add(new HTMLPanel(data));
 		
+		grid.setDataList(data);
+		
+		listGrid.add(grid);
 	}
 
 	public void setPresenter(Presenter presenter) {

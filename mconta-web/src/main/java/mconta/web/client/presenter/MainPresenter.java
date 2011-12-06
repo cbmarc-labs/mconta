@@ -3,6 +3,7 @@
  */
 package mconta.web.client.presenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mconta.core.persistence.Model;
@@ -44,15 +45,13 @@ public class MainPresenter implements Presenter {
 
 		public void onSuccess(List<Model> result) {
 			
-			String out = "";
-			
-			for(int i = 0 ; i < result.size() ; i ++ ) {				
-				Record dto = (Record) result.get(i);
-				
-				out += dto.getTitle() + "<br>";
+			List<Record> l = new ArrayList<Record>();
+			for(Model res: result) {
+				Record rec = (Record) res;
+				l.add(rec);
 			}
 			
-			view.setData(out);
+			view.setData(l);
 			
 		}});
 	}
