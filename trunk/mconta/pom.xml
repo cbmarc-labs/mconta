@@ -28,6 +28,7 @@
 	        <plugin>
 	        	<groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>2</version>
 	            <configuration>
 	                <source>1.7</source>
 	                <target>1.7</target>
@@ -39,6 +40,6 @@
   <modules>
   	<module>../mconta-core</module>
   	<module>../mconta-web</module>
-  	<module>../mconta-client</module>
+  	<!-- <module>../mconta-client</module> -->
   </modules>
 </project>

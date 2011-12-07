@@ -76,5 +76,6 @@
     	<groupId>mconta</groupId>
     	<artifactId>mconta</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
+    	<relativePath>../mconta/pom.xml</relativePath>
     </parent>
 </project>

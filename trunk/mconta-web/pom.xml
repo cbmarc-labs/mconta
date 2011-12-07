@@ -62,11 +62,13 @@
     	<groupId>mconta</groupId>
     	<artifactId>mconta-core</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<scope>compile</scope>
     </dependency>
     <dependency>
     	<groupId>mconta</groupId>
     	<artifactId>mconta-core</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<scope>compile</scope>
 		<type>jar</type>
     	<classifier>sources</classifier>
     </dependency>
