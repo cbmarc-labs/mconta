@@ -5,7 +5,6 @@ package mconta.web.client.view;
 
 import java.util.List;
 
-import mconta.core.persistence.Model;
 import mconta.core.persistence.Record;
 
 import com.google.gwt.user.client.ui.TextBox;
