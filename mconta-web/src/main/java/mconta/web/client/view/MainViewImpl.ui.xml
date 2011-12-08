@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:c="urn:import:com.google.gwt.user.cellview.client">
+	xmlns:c="urn:import:mconta.web.client.ui">
 	<ui:style>
 		.important {
 			font-weight: bold;
@@ -11,6 +11,7 @@
 	<g:HTMLPanel>
 		<g:TextBox ui:field="titleField"></g:TextBox>
 		<g:Button ui:field="acceptButton" text="Accept"></g:Button>
+		<c:AppDataGrid ui:field="appDataGrid"></c:AppDataGrid>
 		<g:HTMLPanel ui:field="listGrid" />
 	</g:HTMLPanel>
 	
