@@ -5,15 +5,27 @@ package mconta.core.persistence;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author Marc
  *
  */
 @SuppressWarnings("serial")
+@Entity
+@Table(name = "USER")
 public class User implements Model {
 	
+	@Id
+	@GeneratedValue
+	@Column(name = "USE_ID", nullable = false)
 	private Long id;
 	
+	@Column(name = "USE_USERNAME", length = 100)
 	private String username;
 	
 	private String password;
