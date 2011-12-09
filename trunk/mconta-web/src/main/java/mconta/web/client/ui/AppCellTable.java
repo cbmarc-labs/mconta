@@ -5,6 +5,8 @@ package mconta.web.client.ui;
 
 import java.util.List;
 
+import mconta.core.persistence.Record;
+
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
@@ -16,30 +18,38 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.CellPreviewEvent;
+import com.google.gwt.view.client.CellPreviewEvent.Handler;
+import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
+import com.google.gwt.view.client.MultiSelectionModel;
 
 /**
  * @author Marc
  *
  */
-public class AppDataGrid<T> extends Composite {
+public class AppCellTable<T> extends Composite {
 
-	private static AppDataGridUiBinder uiBinder = GWT
-			.create(AppDataGridUiBinder.class);
+	private static AppCellTableUiBinder uiBinder = GWT
+			.create(AppCellTableUiBinder.class);
 
 	@SuppressWarnings("rawtypes")
-	interface AppDataGridUiBinder extends UiBinder<Widget, AppDataGrid> {
+	interface AppCellTableUiBinder extends UiBinder<Widget, AppCellTable> {
 	}
 	
 	public ListDataProvider<T> dataProvider;
 	public ListHandler<T> listHandler;
 	
+	public MultiSelectionModel<T> selectionModel;
+	
 	@UiField(provided = true) public CellTable<T> cellTable;
 	@UiField(provided = true) public SimplePager simplePager;
 	
-	public AppDataGrid() {
+	public AppCellTable() {
 		dataProvider = new ListDataProvider<T>();
 		listHandler = new ListHandler<T>(dataProvider.getList());
 		
@@ -52,6 +62,26 @@ public class AppDataGrid<T> extends Composite {
 		
 		dataProvider.addDataDisplay(cellTable);
 		
+		cellTable.setEmptyTableWidget(new HTML("No Data to Display"));
+		
+		selectionModel = new MultiSelectionModel<T>();
+		cellTable.setSelectionModel(selectionModel,
+		        DefaultSelectionEventManager.<T> createCheckboxManager());
+		
+		cellTable.setSelectionModel(selectionModel);
+		
+		cellTable.addCellPreviewHandler(new Handler<T>(){
+
+			public void onCellPreview(CellPreviewEvent<T> event) {
+				boolean isClick = event.getNativeEvent().getType().equals("click");
+				
+				if (event.getColumn() != 0 && isClick) {
+					Record rec = (Record) event.getValue();
+					Window.alert("-->" + rec.getId());
+				}
+				
+			}});
+		
 		initTableColumns();
 		
 		initWidget(uiBinder.createAndBindUi(this));
@@ -60,11 +90,13 @@ public class AppDataGrid<T> extends Composite {
 	private void initTableColumns() {		
 		Column<T, Boolean> checkColumn = new Column<T, Boolean>(
 		        new CheckboxCell(true, false)) {
+			
 		      @Override
 		      public Boolean getValue(T object) {
-		        return null;
+		        return selectionModel.isSelected(object);
 		        
 		      }
+		      
 		    };
 		    
 	    cellTable.addColumn(checkColumn, SafeHtmlUtils.fromSafeConstant("<br/>"));
@@ -73,6 +105,8 @@ public class AppDataGrid<T> extends Composite {
 	
 	public void setData(List<T> data) {
 		List<T> list = dataProvider.getList();
+		
+		selectionModel.clear();
 		
 		list.clear();
 		list.addAll(data);
