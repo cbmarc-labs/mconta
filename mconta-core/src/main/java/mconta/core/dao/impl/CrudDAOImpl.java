@@ -4,6 +4,7 @@
 package mconta.core.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import mconta.core.dao.CrudDAO;
 
@@ -34,8 +35,9 @@ public class CrudDAOImpl<Type>
 	}
 
 	@Override
-	public void remove(Type entity) throws Exception {
-		getHibernateTemplate().delete(entity);
+	@Transactional
+	public void deleteAll(Set<Type> entity) throws Exception {
+		getHibernateTemplate().deleteAll(entity);
 		
 	}
 
