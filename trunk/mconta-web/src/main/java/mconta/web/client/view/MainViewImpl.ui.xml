@@ -10,8 +10,15 @@
 	
 	<g:HTMLPanel>
 		<g:TextBox ui:field="titleField"></g:TextBox>
-		<g:Button ui:field="acceptButton" text="Accept"></g:Button>
-		<c:AppDataGrid ui:field="appDataGrid"></c:AppDataGrid>
+		<g:Button ui:field="submitButton" text="Submit"></g:Button>
+		<g:Button ui:field="deleteButton" text="Delete Selected Items"></g:Button>
+		<c:AppCellTable ui:field="appCellTable"></c:AppCellTable>
+		
+		<g:TextBox ui:field="usernameField"></g:TextBox>
+		<g:Button ui:field="userSubmitButton" text="Submit"></g:Button>
+		<g:Button ui:field="deleteUserButton" text="Delete Selected Items"></g:Button>
+		<c:AppCellTable ui:field="appCellTableUser"></c:AppCellTable>
+		
 		<g:HTMLPanel ui:field="listGrid" />
 	</g:HTMLPanel>
 	
