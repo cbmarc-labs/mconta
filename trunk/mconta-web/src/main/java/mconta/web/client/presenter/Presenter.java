@@ -3,6 +3,10 @@
  */
 package mconta.web.client.presenter;
 
+import java.util.Set;
+
+import mconta.core.persistence.Model;
+
 import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
@@ -11,7 +15,11 @@ import com.google.gwt.user.client.ui.HasWidgets;
  */
 public abstract interface Presenter {
 
-	public void onButtonClicked();
+	public void onSubmitButtonClicked();
+	public void onDeleteButtonClicked(Set<Model> selectedSet);
+	
+	public void onSubmitUserButtonClicked();
+	
 	public abstract void go(final HasWidgets container);
 	
 }

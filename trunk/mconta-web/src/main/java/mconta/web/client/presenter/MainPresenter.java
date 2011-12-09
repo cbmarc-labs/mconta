@@ -3,11 +3,12 @@
  */
 package mconta.web.client.presenter;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import mconta.core.persistence.Model;
 import mconta.core.persistence.Record;
+import mconta.core.persistence.User;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
 import mconta.web.client.rpc.CrudServiceAsync;
@@ -43,17 +44,17 @@ public class MainPresenter implements Presenter {
 	public void doLoad() {
 		service.getAll(Record.class.getName(), new AppAsyncCallback<List<Model>>(){
 
-		public void onSuccess(List<Model> result) {
-			
-			List<Record> l = new ArrayList<Record>();
-			for(Model res: result) {
-				Record rec = (Record) res;
-				l.add(rec);
-			}
-			
-			view.setData(l);
+		public void onSuccess(List<Model> result) {			
+			view.setData(result);
 			
 		}});
+		
+		service.getAll(User.class.getName(), new AppAsyncCallback<List<Model>>(){
+
+			public void onSuccess(List<Model> result) {
+				view.setUserData(result);
+				
+			}});
 	}
 
 	public void go(HasWidgets container) {
@@ -64,9 +65,7 @@ public class MainPresenter implements Presenter {
 		
 	}
 
-	public void onButtonClicked() {
-		view.getTextField().getValue();
-		
+	public void onSubmitButtonClicked() {
 		Record record = new Record();
 		record.setTitle(view.getTextField().getValue());
 		
@@ -76,6 +75,29 @@ public class MainPresenter implements Presenter {
 				doLoad();
 				
 			}});
+	}
+
+	public void onDeleteButtonClicked(Set<Model> selectedSet) {		
+		service.deleteAll(selectedSet, new AppAsyncCallback<Void>(){
+
+			public void onSuccess(Void result) {
+				doLoad();
+				
+			}});
+		
+	}
+
+	public void onSubmitUserButtonClicked() {
+		User user = new User();
+		user.setUsername(view.getUsernameTextField().getValue());
+		
+		service.save(user, new AppAsyncCallback<Void>(){
+
+			public void onSuccess(Void result) {
+				doLoad();
+				
+			}});
+		
 	}
 
 }
