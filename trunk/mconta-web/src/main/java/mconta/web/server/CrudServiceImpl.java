@@ -4,6 +4,7 @@
 package mconta.web.server;
 
 import java.util.List;
+import java.util.Set;
 
 import mconta.core.dao.CrudDAO;
 import mconta.core.persistence.Model;
@@ -32,14 +33,13 @@ public class CrudServiceImpl
 		
 	}
 
-	public List<Model> getAll(String model) throws Exception {		
-		List<Model> records = dao.getAll(model);
+	public List<Model> getAll(String model) throws Exception {
+		return dao.getAll(model);
 		
-		return records;
 	}
 
-	public void remove(Model model) throws Exception {
-		dao.remove(model);
+	public void deleteAll(Set<Model> model) throws Exception {
+		dao.deleteAll(model);
 		
 	}
 }
