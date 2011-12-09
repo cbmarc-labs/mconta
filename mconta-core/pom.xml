@@ -10,6 +10,13 @@
   <packaging>jar</packaging>
   <name>mconta-core</name>
 
+  <parent>
+  	<groupId>mconta</groupId>
+  	<artifactId>mconta</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+	<relativePath>../mconta</relativePath>
+  </parent>
+
 	<dependencies>
     	<dependency>
       		<groupId>junit</groupId>
@@ -103,11 +110,4 @@
       		</plugin>
         </plugins>
     </build>
-	
-    <parent>
-    	<groupId>mconta</groupId>
-    	<artifactId>mconta</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    	<relativePath>../mconta/pom.xml</relativePath>
-    </parent>
 </project>
