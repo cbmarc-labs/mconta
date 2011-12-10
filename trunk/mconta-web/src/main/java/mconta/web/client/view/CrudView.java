@@ -11,7 +11,7 @@ import mconta.core.persistence.Model;
  * @author Marc
  *
  */
-public interface MainView extends View {
+public interface CrudView extends View {
 	
 	public void setData(List<Model> data);
 

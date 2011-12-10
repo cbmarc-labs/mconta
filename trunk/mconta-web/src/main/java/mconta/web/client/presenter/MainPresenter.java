@@ -11,9 +11,9 @@ import mconta.core.persistence.Record;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
 import mconta.web.client.rpc.CrudServiceAsync;
-import mconta.web.client.view.MainView;
-import mconta.web.client.view.MainViewImpl;
+import mconta.web.client.view.CrudView;
 import mconta.web.client.view.View;
+import mconta.web.client.view.impl.RecordViewImpl;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
@@ -23,24 +23,24 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * @author Marc
  *
  */
-public class MainPresenter implements Presenter {
+public class MainPresenter implements CrudPresenter {
 	
 	private final CrudServiceAsync service = GWT.create(CrudService.class);
-	interface Driver extends SimpleBeanEditorDriver<Record, MainViewImpl> {}
+	interface Driver extends SimpleBeanEditorDriver<Record, RecordViewImpl> {}
 	
 	Driver driver = GWT.create(Driver.class);
 	
 	Record record;
 	
-	private final MainView view;
+	private final CrudView view;
 	
 	public MainPresenter(View view) {
-		this.view = (MainView) view;
+		this.view = (CrudView) view;
 		view.setPresenter(this);
 		
 		record = new Record();
 		
-		driver.initialize((MainViewImpl) view);
+		driver.initialize((RecordViewImpl) view);
 		driver.edit(record);
 		
 		bind();

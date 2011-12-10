@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mconta.web.client.view;
+package mconta.web.client.view.impl;
 
 import java.util.Comparator;
 import java.util.List;
@@ -11,6 +11,7 @@ import mconta.core.persistence.Model;
 import mconta.core.persistence.Record;
 import mconta.web.client.presenter.Presenter;
 import mconta.web.client.ui.AppCellTable;
+import mconta.web.client.view.CrudView;
 
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
@@ -31,13 +32,13 @@ import com.google.gwt.view.client.CellPreviewEvent.Handler;
  * @author Marc
  *
  */
-public class MainViewImpl extends Composite implements MainView, Editor<Record> {
+public class RecordViewImpl extends Composite implements CrudView, Editor<Record> {
 
 	private static MainUiBinder uiBinder = GWT.create(MainUiBinder.class);
 	
 	Presenter presenter;
 
-	interface MainUiBinder extends UiBinder<Widget, MainViewImpl> {}
+	interface MainUiBinder extends UiBinder<Widget, RecordViewImpl> {}
 
 	@UiField TextBox rec_title;
 	@UiField Button submitButton;
@@ -47,7 +48,7 @@ public class MainViewImpl extends Composite implements MainView, Editor<Record> 
 	Column<Model, Number> idColumn;
 	Column<Model, String> firstNameColumn;
 	
-	public MainViewImpl() {		
+	public RecordViewImpl() {		
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		createCellTable();

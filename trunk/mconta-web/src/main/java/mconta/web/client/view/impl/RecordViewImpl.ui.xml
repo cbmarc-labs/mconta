@@ -12,8 +12,10 @@
 	<g:HTMLPanel>
 	
 		<g:TextBox ui:field="rec_title"></g:TextBox>
+		
 		<g:Button ui:field="submitButton" text="Submit"></g:Button>
 		<g:Button ui:field="deleteButton" text="Delete Selected Items"></g:Button>
+		
 		<c:AppCellTable ui:field="appCellTable"></c:AppCellTable>
 		
 	</g:HTMLPanel>
