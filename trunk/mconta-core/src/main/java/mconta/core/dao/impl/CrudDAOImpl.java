@@ -29,8 +29,8 @@ public class CrudDAOImpl<Type>
     	
 	@Override
 	@Transactional
-	public void save(Type entity) throws Exception {
-		getHibernateTemplate().save(entity);
+	public void saveOrUpdate(Type entity) throws Exception {
+		getHibernateTemplate().saveOrUpdate(entity);
 		
 	}
 
@@ -44,7 +44,7 @@ public class CrudDAOImpl<Type>
 	@SuppressWarnings("unchecked")
 	@Override
 	public Type get(long id, String domainName) throws Exception {
-		return (Type)getHibernateTemplate().load(domainName, id);
+		return (Type)getHibernateTemplate().get(domainName, id);
 		
 	}
 
