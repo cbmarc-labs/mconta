@@ -14,81 +14,74 @@ public class Record implements Model {
 	@Id
 	@GeneratedValue
 	@Column(name = "REC_ID", nullable = false)
-	private Long id;
+	private Long rec_id;
 	
 	@Column(name = "REC_TITLE", length = 100)
-	private String title;
+	private String rec_title;
 	
 	@Column(name = "REC_YEAR")
-	private int year;
+	private int rec_year;
 	
 	@Column(name = "REC_PRICE")
-	private double price;
+	private double rec_price;
   
 	public Record() {
 	}
-	  
-	public Record(Long id, String title, int year, double price) {
-		this.id = id;
-		this.title = title;
-		this.year = year;
-		this.price = price;
+
+	/**
+	 * @return the rec_id
+	 */
+	public Long getRec_id() {
+		return rec_id;
 	}
 
 	/**
-	 * @return the id
+	 * @param rec_id the rec_id to set
 	 */
-	public Long getId() {
-		return id;
+	public void setRec_id(Long rec_id) {
+		this.rec_id = rec_id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @return the rec_title
 	 */
-	public void setId(Long id) {
-		this.id = id;
+	public String getRec_title() {
+		return rec_title;
 	}
 
 	/**
-	 * @return the title
+	 * @param rec_title the rec_title to set
 	 */
-	public String getTitle() {
-		return title;
+	public void setRec_title(String rec_title) {
+		this.rec_title = rec_title;
 	}
 
 	/**
-	 * @param title the title to set
+	 * @return the rec_year
 	 */
-	public void setTitle(String title) {
-		this.title = title;
+	public int getRec_year() {
+		return rec_year;
 	}
 
 	/**
-	 * @return the year
+	 * @param rec_year the rec_year to set
 	 */
-	public int getYear() {
-		return year;
+	public void setRec_year(int rec_year) {
+		this.rec_year = rec_year;
 	}
 
 	/**
-	 * @param year the year to set
+	 * @return the rec_price
 	 */
-	public void setYear(int year) {
-		this.year = year;
+	public double getRec_price() {
+		return rec_price;
 	}
 
 	/**
-	 * @return the price
+	 * @param rec_price the rec_price to set
 	 */
-	public double getPrice() {
-		return price;
-	}
-
-	/**
-	 * @param price the price to set
-	 */
-	public void setPrice(double price) {
-		this.price = price;
+	public void setRec_price(double rec_price) {
+		this.rec_price = rec_price;
 	}
 	
 }
