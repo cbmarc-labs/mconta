@@ -11,7 +11,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("crudService")
 public interface CrudService extends RemoteService {
 	
-	public void save(Model model) throws Exception;
+	public void saveOrUpdate(Model model) throws Exception;
 	public Model get(long id, String model) throws Exception;
 	public List<Model> getAll(String model) throws Exception;
 	public void deleteAll(Set<Model> model) throws Exception;

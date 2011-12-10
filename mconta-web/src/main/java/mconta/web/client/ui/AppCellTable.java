@@ -5,8 +5,6 @@ package mconta.web.client.ui;
 
 import java.util.List;
 
-import mconta.core.persistence.Record;
-
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
@@ -18,12 +16,9 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.view.client.CellPreviewEvent;
-import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
@@ -69,18 +64,6 @@ public class AppCellTable<T> extends Composite {
 		        DefaultSelectionEventManager.<T> createCheckboxManager());
 		
 		cellTable.setSelectionModel(selectionModel);
-		
-		cellTable.addCellPreviewHandler(new Handler<T>(){
-
-			public void onCellPreview(CellPreviewEvent<T> event) {
-				boolean isClick = event.getNativeEvent().getType().equals("click");
-				
-				if (event.getColumn() != 0 && isClick) {
-					Record rec = (Record) event.getValue();
-					Window.alert("-->" + rec.getId());
-				}
-				
-			}});
 		
 		initTableColumns();
 		

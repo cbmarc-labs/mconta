@@ -15,10 +15,9 @@ import com.google.gwt.user.client.ui.HasWidgets;
  */
 public abstract interface Presenter {
 
-	public void onSubmitButtonClicked();
-	public void onDeleteButtonClicked(Set<Model> selectedSet);
-	
-	public void onSubmitUserButtonClicked();
+	public void doSave();
+	public void doDelete(Set<Model> selectedSet);
+	public void doEdit(Model model);
 	
 	public abstract void go(final HasWidgets container);
 	

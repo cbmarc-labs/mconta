@@ -8,14 +8,15 @@ import java.util.Set;
 
 import mconta.core.persistence.Model;
 import mconta.core.persistence.Record;
-import mconta.core.persistence.User;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
 import mconta.web.client.rpc.CrudServiceAsync;
 import mconta.web.client.view.MainView;
+import mconta.web.client.view.MainViewImpl;
 import mconta.web.client.view.View;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
@@ -24,8 +25,12 @@ import com.google.gwt.user.client.ui.HasWidgets;
  */
 public class MainPresenter implements Presenter {
 	
-	private final CrudServiceAsync service = 
-			GWT.create(CrudService.class);
+	private final CrudServiceAsync service = GWT.create(CrudService.class);
+	interface Driver extends SimpleBeanEditorDriver<Record, MainViewImpl> {}
+	
+	Driver driver = GWT.create(Driver.class);
+	
+	Record record;
 	
 	private final MainView view;
 	
@@ -33,11 +38,24 @@ public class MainPresenter implements Presenter {
 		this.view = (MainView) view;
 		view.setPresenter(this);
 		
+		record = new Record();
+		
+		driver.initialize((MainViewImpl) view);
+		driver.edit(record);
+		
 		bind();
 		
 	}
 	
 	private void bind() {
+		
+	}
+
+	public void go(HasWidgets container) {
+		container.clear();
+		container.add(view.asWidget());
+		
+		doLoad();
 		
 	}
 	
@@ -49,35 +67,23 @@ public class MainPresenter implements Presenter {
 			
 		}});
 		
-		service.getAll(User.class.getName(), new AppAsyncCallback<List<Model>>(){
-
-			public void onSuccess(List<Model> result) {
-				view.setUserData(result);
-				
-			}});
 	}
 
-	public void go(HasWidgets container) {
-		container.clear();
-		container.add(view.asWidget());
+	public void doSave() {
+		record = driver.flush();
 		
-		doLoad();
-		
-	}
-
-	public void onSubmitButtonClicked() {
-		Record record = new Record();
-		record.setTitle(view.getTextField().getValue());
-		
-		service.save(record, new AppAsyncCallback<Void>(){
+		service.saveOrUpdate(record, new AppAsyncCallback<Void>(){
 
 			public void onSuccess(Void result) {
+				record = new Record();
+				driver.edit(record);
+				
 				doLoad();
 				
 			}});
 	}
 
-	public void onDeleteButtonClicked(Set<Model> selectedSet) {		
+	public void doDelete(Set<Model> selectedSet) {		
 		service.deleteAll(selectedSet, new AppAsyncCallback<Void>(){
 
 			public void onSuccess(Void result) {
@@ -87,16 +93,9 @@ public class MainPresenter implements Presenter {
 		
 	}
 
-	public void onSubmitUserButtonClicked() {
-		User user = new User();
-		user.setUsername(view.getUsernameTextField().getValue());
-		
-		service.save(user, new AppAsyncCallback<Void>(){
-
-			public void onSuccess(Void result) {
-				doLoad();
-				
-			}});
+	public void doEdit(Model model) {
+		this.record = (Record) model;
+		driver.edit((Record) model);
 		
 	}
 

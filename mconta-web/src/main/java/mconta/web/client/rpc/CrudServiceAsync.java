@@ -18,7 +18,7 @@ public interface CrudServiceAsync {
 	
 	void deleteAll(Set<Model> dto, AsyncCallback<Void> callback);
 	void getAll(String model, AsyncCallback<List<Model>> callback);
-	void save(Model dto, AsyncCallback<Void> callback);
+	void saveOrUpdate(Model dto, AsyncCallback<Void> callback);
 	void get(long id, String model, AsyncCallback<Model> callback);
 
 }
