@@ -23,8 +23,8 @@ public class CrudServiceImpl
 	@Autowired
 	protected CrudDAO<Model> dao;
 
-	public void save(Model model) throws Exception {		
-		dao.save(model);
+	public void saveOrUpdate(Model model) throws Exception {
+		dao.saveOrUpdate(model);
 		
 	}
 
