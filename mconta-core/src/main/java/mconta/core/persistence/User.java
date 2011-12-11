@@ -3,8 +3,6 @@
  */
 package mconta.core.persistence;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,147 +16,82 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "USER")
-public class User implements Model {
+public class User extends Auditable {
 	
 	@Id
 	@GeneratedValue
 	@Column(name = "USE_ID", nullable = false)
-	private Long id;
+	protected Long use_id;
 	
-	@Column(name = "USE_USERNAME", length = 100)
-	private String username;
+	@Column(name = "USE_NAME", length = 100)
+	protected String use_name;
 	
-	private String password;
+	@Column(name = "USE_PASSWORD", length = 100)
+	protected String use_password;
 	
-	private Boolean enabled;
+	@Column(name = "USE_ENABLED", length = 1)
+	protected Boolean use_enabled;
 	
-	private String createdBy;
-	
-	private Date createdOn;
-	
-	private String modifiedBy;
-	
-	private Date modifiedOn;
+	//@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//private Set<Group> use_group = new HashSet<Group>(0);
 	
 	public User() {
 	}
-	
-	public User(Long id, String username, String password) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
+
+	/**
+	 * @return the use_id
+	 */
+	public Long getUse_id() {
+		return use_id;
 	}
 
 	/**
-	 * @return the id
+	 * @param use_id the use_id to set
 	 */
-	public Long getId() {
-		return id;
+	public void setUse_id(Long use_id) {
+		this.use_id = use_id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @return the use_name
 	 */
-	public void setId(Long id) {
-		this.id = id;
+	public String getUse_name() {
+		return use_name;
 	}
 
 	/**
-	 * @return the username
+	 * @param use_name the use_name to set
 	 */
-	public String getUsername() {
-		return username;
+	public void setUse_name(String use_name) {
+		this.use_name = use_name;
 	}
 
 	/**
-	 * @param username the username to set
+	 * @return the use_password
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public String getUse_password() {
+		return use_password;
 	}
 
 	/**
-	 * @return the password
+	 * @param use_password the use_password to set
 	 */
-	public String getPassword() {
-		return password;
+	public void setUse_password(String use_password) {
+		this.use_password = use_password;
 	}
 
 	/**
-	 * @param password the password to set
+	 * @return the use_enabled
 	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	/**
-	 * @return the enabled
-	 */
-	public Boolean getEnabled() {
-		return enabled;
+	public Boolean getUse_enabled() {
+		return use_enabled;
 	}
 
 	/**
-	 * @param enabled the enabled to set
+	 * @param use_enabled the use_enabled to set
 	 */
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	/**
-	 * @return the createdBy
-	 */
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	/**
-	 * @param createdBy the createdBy to set
-	 */
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	/**
-	 * @return the createdOn
-	 */
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-
-	/**
-	 * @param createdOn the createdOn to set
-	 */
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-
-	/**
-	 * @return the modifiedBy
-	 */
-	public String getModifiedBy() {
-		return modifiedBy;
-	}
-
-	/**
-	 * @param modifiedBy the modifiedBy to set
-	 */
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-
-	/**
-	 * @return the modifiedOn
-	 */
-	public Date getModifiedOn() {
-		return modifiedOn;
-	}
-
-	/**
-	 * @param modifiedOn the modifiedOn to set
-	 */
-	public void setModifiedOn(Date modifiedOn) {
-		this.modifiedOn = modifiedOn;
+	public void setUse_enabled(Boolean use_enabled) {
+		this.use_enabled = use_enabled;
 	}
 
 }
