@@ -37,7 +37,6 @@ public class GroupPresenter implements CrudPresenter {
 	
 	public GroupPresenter(View view) {
 		this.view = (CrudView) view;
-		view.setPresenter(this);
 		
 		entity = new UserGroup();
 		
@@ -48,7 +47,8 @@ public class GroupPresenter implements CrudPresenter {
 		
 	}
 	
-	private void bind() {
+	public void bind() {
+		view.setPresenter(this);
 		
 	}
 

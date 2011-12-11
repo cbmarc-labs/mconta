@@ -4,11 +4,13 @@
 package mconta.web.client.presenter;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import mconta.core.persistence.Model;
 import mconta.core.persistence.User;
+import mconta.core.persistence.UserGroup;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
 import mconta.web.client.rpc.CrudServiceAsync;
@@ -37,7 +39,6 @@ public class UserPresenter implements CrudPresenter {
 	
 	public UserPresenter(View view) {
 		this.view = (CrudView) view;
-		view.setPresenter(this);
 		
 		user = new User();
 		
@@ -48,7 +49,8 @@ public class UserPresenter implements CrudPresenter {
 		
 	}
 	
-	private void bind() {
+	public void bind() {
+		view.setPresenter(this);
 		
 	}
 
@@ -61,12 +63,19 @@ public class UserPresenter implements CrudPresenter {
 	}
 	
 	public void doLoad() {
+		service.getAll(UserGroup.class.getName(), new AppAsyncCallback<List<Model>>(){
+
+			public void onSuccess(List<Model> result) {
+				// TODO Auto-generated method stub
+				
+			}});
+		
 		service.getAll(User.class.getName(), new AppAsyncCallback<List<Model>>(){
 
-		public void onSuccess(List<Model> result) {			
-			view.setData(result);
-			
-		}});
+			public void onSuccess(List<Model> result) {
+				view.setData(result);
+				
+			}});
 		
 	}
 
@@ -76,6 +85,7 @@ public class UserPresenter implements CrudPresenter {
 		if(user.getUse_id() == null) {
 			user.setAud_createdBy("anonymous");
 			user.setAud_createdOn(new Date());
+			//user.setUse_usergroup(new HashSet<UserGroup>());
 		}
 		
 		user.setAud_modifiedBy("anonymous");
