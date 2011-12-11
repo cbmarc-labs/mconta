@@ -51,8 +51,9 @@ public class CrudDAOImpl<Type>
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Type> getAll(String domainName) throws Exception {
-		List<Type> all = getHibernateTemplate().
-				find("from " + domainName);
+		List<Type> all = null;
+
+		all = getHibernateTemplate().find("from " + domainName);
 		
 		return all;
 	}
