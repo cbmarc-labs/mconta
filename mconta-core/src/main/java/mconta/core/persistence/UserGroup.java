@@ -31,6 +31,11 @@ public class UserGroup extends Auditable {
 	
 	public UserGroup() {
 	}
+	
+	public UserGroup(String ugr_name, Boolean ugr_enabled) {
+		this.ugr_name = ugr_name;
+		this.ugr_enabled = ugr_enabled;
+	}
 
 	/**
 	 * @return the ugr_id
