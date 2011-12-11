@@ -12,6 +12,7 @@
 	<g:HTMLPanel>
 	
 		<g:TextBox ui:field="use_name"></g:TextBox>
+		<g:ListBox ui:field="use_usergroup"></g:ListBox>
 		
 		<g:Button ui:field="submitButton" text="Submit"></g:Button>
 		<g:Button ui:field="deleteButton" text="Delete Selected Items"></g:Button>

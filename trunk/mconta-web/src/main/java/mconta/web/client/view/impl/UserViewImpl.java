@@ -28,6 +28,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.CellPreviewEvent;
@@ -46,6 +47,7 @@ public class UserViewImpl extends Composite implements CrudView, Editor<User> {
 	interface MainUiBinder extends UiBinder<Widget, UserViewImpl> {}
 
 	@UiField TextBox use_name;
+	@UiField ListBox use_usergroup;
 	@UiField Button submitButton;
 	@UiField Button deleteButton;
 	@UiField AppCellTable<Model> appCellTable;

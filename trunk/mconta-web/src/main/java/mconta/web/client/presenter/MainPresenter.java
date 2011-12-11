@@ -23,7 +23,6 @@ public class MainPresenter implements Presenter {
 	
 	public MainPresenter(View view) {
 		this.view = (MainView) view;
-		view.setPresenter(this);
 		
 		userPresenter = new UserPresenter(new UserViewImpl());
 		groupPresenter = new GroupPresenter(new GroupViewImpl());
@@ -35,7 +34,8 @@ public class MainPresenter implements Presenter {
 		
 	}
 	
-	private void bind() {
+	public void bind() {
+		view.setPresenter(this);
 		
 	}
 
