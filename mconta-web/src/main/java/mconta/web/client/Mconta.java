@@ -3,7 +3,7 @@ package mconta.web.client;
 import mconta.web.client.presenter.MainPresenter;
 import mconta.web.client.rpc.LoginService;
 import mconta.web.client.rpc.LoginServiceAsync;
-import mconta.web.client.view.impl.RecordViewImpl;
+import mconta.web.client.view.impl.MainViewImpl;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -26,7 +26,7 @@ public class Mconta implements EntryPoint {
 			
 		});*/
 		
-		new MainPresenter(new RecordViewImpl()).go(RootPanel.get("mainContainer"));
+		new MainPresenter(new MainViewImpl()).go(RootPanel.get("mainContainer"));
 		
 	}
 	
