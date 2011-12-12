@@ -43,6 +43,7 @@ public class CrudDAOImpl<Type>
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public Type get(long id, String domainName) throws Exception {
 		return (Type)getHibernateTemplate().get(domainName, id);
 		
@@ -50,6 +51,7 @@ public class CrudDAOImpl<Type>
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Type> getAll(String domainName) throws Exception {
 		List<Type> all = null;
 

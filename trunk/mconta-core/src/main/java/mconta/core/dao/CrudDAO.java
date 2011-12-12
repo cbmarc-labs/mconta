@@ -18,6 +18,8 @@ public interface CrudDAO<Type> {
 	void saveOrUpdate(Type entity) throws Exception;
 	void deleteAll(Set<Type> entity) throws Exception;
     Type get(long id, String domainName) throws Exception;
+    
+    @Transactional
     List<Type> getAll(String domainName) throws Exception;
 
 }
