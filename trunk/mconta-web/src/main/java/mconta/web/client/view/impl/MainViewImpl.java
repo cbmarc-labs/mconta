@@ -3,8 +3,8 @@
  */
 package mconta.web.client.view.impl;
 
+import mconta.web.client.presenter.impl.MainPresenter.MainView;
 import mconta.web.client.presenter.Presenter;
-import mconta.web.client.view.MainView;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;

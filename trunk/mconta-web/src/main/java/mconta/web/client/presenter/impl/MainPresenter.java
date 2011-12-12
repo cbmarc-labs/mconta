@@ -1,13 +1,14 @@
 /**
  * 
  */
-package mconta.web.client.presenter;
+package mconta.web.client.presenter.impl;
 
-import mconta.web.client.view.MainView;
+import mconta.web.client.presenter.Presenter;
 import mconta.web.client.view.View;
 import mconta.web.client.view.impl.GroupViewImpl;
 import mconta.web.client.view.impl.UserViewImpl;
 
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
@@ -15,6 +16,13 @@ import com.google.gwt.user.client.ui.HasWidgets;
  *
  */
 public class MainPresenter implements Presenter {
+	
+	public interface MainView extends View {
+		
+		public HTMLPanel getUserPanel();
+		public HTMLPanel getGroupPanel();
+
+	}
 	
 	private final MainView view;
 	

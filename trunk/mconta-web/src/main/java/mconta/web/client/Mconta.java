@@ -1,6 +1,6 @@
 package mconta.web.client;
 
-import mconta.web.client.presenter.MainPresenter;
+import mconta.web.client.presenter.impl.MainPresenter;
 import mconta.web.client.rpc.LoginService;
 import mconta.web.client.rpc.LoginServiceAsync;
 import mconta.web.client.view.impl.MainViewImpl;
