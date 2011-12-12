@@ -1,20 +1,23 @@
 /**
  * 
  */
-package mconta.web.client.presenter;
+package mconta.web.client.presenter.impl;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import mconta.core.persistence.Model;
+import mconta.core.persistence.User;
 import mconta.core.persistence.UserGroup;
+import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
 import mconta.web.client.rpc.CrudServiceAsync;
 import mconta.web.client.view.CrudView;
 import mconta.web.client.view.View;
-import mconta.web.client.view.impl.GroupViewImpl;
+import mconta.web.client.view.impl.UserViewImpl;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
@@ -24,24 +27,24 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * @author Marc
  *
  */
-public class GroupPresenter implements CrudPresenter {
+public class UserPresenter implements CrudPresenter {
 	
 	private final CrudServiceAsync service = GWT.create(CrudService.class);
-	interface Driver extends SimpleBeanEditorDriver<UserGroup, GroupViewImpl> {}
+	interface Driver extends SimpleBeanEditorDriver<User, UserViewImpl> {}
 	
 	Driver driver = GWT.create(Driver.class);
 	
-	UserGroup entity;
+	User user;
 	
 	private final CrudView view;
 	
-	public GroupPresenter(View view) {
+	public UserPresenter(View view) {
 		this.view = (CrudView) view;
 		
-		entity = new UserGroup();
+		user = new User();
 		
-		driver.initialize((GroupViewImpl) view);
-		driver.edit(entity);
+		driver.initialize((UserViewImpl) view);
+		driver.edit(user);
 		
 		bind();
 		
@@ -60,32 +63,33 @@ public class GroupPresenter implements CrudPresenter {
 		
 	}
 	
-	public void doLoad() {
-		service.getAll(UserGroup.class.getName(), new AppAsyncCallback<List<Model>>(){
+	public void doLoad() {		
+		service.getAll(User.class.getName(), new AppAsyncCallback<List<Model>>(){
 
-		public void onSuccess(List<Model> result) {			
-			view.setData(result);
-			
-		}});
+			public void onSuccess(List<Model> result) {
+				view.setData(result);
+				
+			}});
 		
 	}
 
 	public void doSave() {
-		entity = driver.flush();
+		user = driver.flush();
 		
-		if(entity.getUgr_id() == null) {
-			entity.setAud_createdBy("anonymous");
-			entity.setAud_createdOn(new Date());
+		if(user.getUse_id() == null) {
+			user.setAud_createdBy("anonymous");
+			user.setAud_createdOn(new Date());
+			user.setUse_usergroup(new HashSet<UserGroup>());
 		}
 		
-		entity.setAud_modifiedBy("anonymous");
-		entity.setAud_modifiedOn(new Date());
+		user.setAud_modifiedBy("anonymous");
+		user.setAud_modifiedOn(new Date());
 		
-		service.saveOrUpdate(entity, new AppAsyncCallback<Void>(){
+		service.saveOrUpdate(user, new AppAsyncCallback<Void>(){
 
 			public void onSuccess(Void result) {
-				entity = new UserGroup();
-				driver.edit(entity);
+				user = new User();
+				driver.edit(user);
 				
 				doLoad();
 				
@@ -103,8 +107,8 @@ public class GroupPresenter implements CrudPresenter {
 	}
 
 	public void doEdit(Model model) {
-		this.entity = (UserGroup) model;
-		driver.edit((UserGroup) model);
+		this.user = (User) model;
+		driver.edit((User) model);
 		
 	}
 
