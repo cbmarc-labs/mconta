@@ -11,13 +11,17 @@
 	
 	<g:HTMLPanel>
 	
-		<g:TextBox ui:field="use_name"></g:TextBox>
-		<g:ListBox ui:field="use_usergroup"></g:ListBox>
+		UserName :
+		<g:TextBox ui:field="use_name"/>
+		Password :
+		<g:TextBox ui:field="use_password"/>
+		Role :
+		<c:ObjectListBox ui:field="use_roles"/>
 		
-		<g:Button ui:field="submitButton" text="Submit"></g:Button>
-		<g:Button ui:field="deleteButton" text="Delete Selected Items"></g:Button>
+		<g:Button ui:field="submitButton" text="Submit"/>
+		<g:Button ui:field="deleteButton" text="Delete Selected Items"/>
 		
-		<c:AppCellTable ui:field="appCellTable"></c:AppCellTable>
+		<c:AppCellTable ui:field="appCellTable"/>
 		
 	</g:HTMLPanel>
 	

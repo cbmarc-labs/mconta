@@ -3,19 +3,18 @@
  */
 package mconta.web.client.presenter.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import mconta.core.persistence.Model;
-import mconta.core.persistence.UserGroup;
+import mconta.domain.model.Model;
+import mconta.domain.model.Role;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
 import mconta.web.client.rpc.CrudServiceAsync;
 import mconta.web.client.view.CrudView;
 import mconta.web.client.view.View;
-import mconta.web.client.view.impl.GroupViewImpl;
+import mconta.web.client.view.impl.RoleViewImpl;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
@@ -25,23 +24,23 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * @author Marc
  *
  */
-public class GroupPresenter implements CrudPresenter {
+public class RolePresenter implements CrudPresenter {
 	
 	private final CrudServiceAsync service = GWT.create(CrudService.class);
-	interface Driver extends SimpleBeanEditorDriver<UserGroup, GroupViewImpl> {}
+	interface Driver extends SimpleBeanEditorDriver<Role, RoleViewImpl> {}
 	
 	Driver driver = GWT.create(Driver.class);
 	
-	UserGroup entity;
+	Role entity;
 	
 	private final CrudView view;
 	
-	public GroupPresenter(View view) {
+	public RolePresenter(View view) {
 		this.view = (CrudView) view;
 		
-		entity = new UserGroup();
+		entity = new Role();
 		
-		driver.initialize((GroupViewImpl) view);
+		driver.initialize((RoleViewImpl) view);
 		driver.edit(entity);
 		
 		bind();
@@ -62,7 +61,7 @@ public class GroupPresenter implements CrudPresenter {
 	}
 	
 	public void doLoad() {
-		service.getAll(UserGroup.class.getName(), new AppAsyncCallback<List<Model>>(){
+		service.getAll(Role.class.getName(), new AppAsyncCallback<List<Model>>(){
 
 		public void onSuccess(List<Model> result) {			
 			view.setData(result);
@@ -74,18 +73,10 @@ public class GroupPresenter implements CrudPresenter {
 	public void doSave() {
 		entity = driver.flush();
 		
-		if(entity.getUgr_id() == null) {
-			entity.setAud_createdBy("anonymous");
-			entity.setAud_createdOn(new Date());
-		}
-		
-		entity.setAud_modifiedBy("anonymous");
-		entity.setAud_modifiedOn(new Date());
-		
 		service.saveOrUpdate(entity, new AppAsyncCallback<Void>(){
 
 			public void onSuccess(Void result) {
-				entity = new UserGroup();
+				entity = new Role();
 				driver.edit(entity);
 				
 				doLoad();
@@ -104,8 +95,8 @@ public class GroupPresenter implements CrudPresenter {
 	}
 
 	public void doEdit(Model model) {
-		this.entity = (UserGroup) model;
-		driver.edit((UserGroup) model);
+		this.entity = (Role) model;
+		driver.edit((Role) model);
 		
 	}
 

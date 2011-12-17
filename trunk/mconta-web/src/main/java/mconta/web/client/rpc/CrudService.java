@@ -3,7 +3,7 @@ package mconta.web.client.rpc;
 import java.util.List;
 import java.util.Set;
 
-import mconta.core.persistence.Model;
+import mconta.domain.model.Model;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;

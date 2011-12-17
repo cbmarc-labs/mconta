@@ -17,8 +17,8 @@
 	
 		<g:Label>USER PANEL</g:Label>
 		<g:HTMLPanel ui:field="userpanel" styleName="{style.panel}"></g:HTMLPanel>
-		<g:Label>GROUP PANEL</g:Label>
-		<g:HTMLPanel ui:field="grouppanel" styleName="{style.panel}"></g:HTMLPanel>
+		<g:Label>ROLE PANEL</g:Label>
+		<g:HTMLPanel ui:field="rolepanel" styleName="{style.panel}"></g:HTMLPanel>
 		
 	</g:HTMLPanel>
 	
