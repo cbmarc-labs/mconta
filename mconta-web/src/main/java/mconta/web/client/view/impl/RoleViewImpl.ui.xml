@@ -11,7 +11,8 @@
 	
 	<g:HTMLPanel>
 	
-		<g:TextBox ui:field="ugr_name"></g:TextBox>
+		RoleName :
+		<g:TextBox ui:field="rol_name"></g:TextBox>
 		
 		<g:Button ui:field="submitButton" text="Submit"></g:Button>
 		<g:Button ui:field="deleteButton" text="Delete Selected Items"></g:Button>

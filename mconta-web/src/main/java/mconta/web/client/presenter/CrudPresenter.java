@@ -5,7 +5,7 @@ package mconta.web.client.presenter;
 
 import java.util.Set;
 
-import mconta.core.persistence.Model;
+import mconta.domain.model.Model;
 
 /**
  * @author Marc

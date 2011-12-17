@@ -4,18 +4,16 @@
 package mconta.web.client.view.impl;
 
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import mconta.core.persistence.UserGroup;
-import mconta.core.persistence.Model;
+import mconta.domain.model.Model;
+import mconta.domain.model.Role;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.presenter.Presenter;
 import mconta.web.client.ui.AppCellTable;
 import mconta.web.client.view.CrudView;
 
-import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
@@ -37,29 +35,25 @@ import com.google.gwt.view.client.CellPreviewEvent.Handler;
  * @author Marc
  *
  */
-public class GroupViewImpl extends Composite implements CrudView, Editor<UserGroup> {
+public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 
 	private static MainUiBinder uiBinder = GWT.create(MainUiBinder.class);
 	
 	CrudPresenter presenter;
 
-	interface MainUiBinder extends UiBinder<Widget, GroupViewImpl> {}
+	interface MainUiBinder extends UiBinder<Widget, RoleViewImpl> {}
 
-	@UiField TextBox ugr_name;
+	@UiField TextBox rol_name;
 	@UiField Button submitButton;
 	@UiField Button deleteButton;
 	@UiField AppCellTable<Model> appCellTable;
 	
-	Column<Model, Number> ugr_id_column;
-	Column<Model, String> ugr_name_column;
-	Column<Model, String> aud_createdBy_column;
-	Column<Model, Date> aud_createdOn_column;
-	Column<Model, String> aud_modifiedBy_column;
-	Column<Model, Date> aud_modifiedOn_column;
+	Column<Model, Number> rol_id_column;
+	Column<Model, String> rol_name_column;
 	
 	DateTimeFormat dateFormat;
 	
-	public GroupViewImpl() {		
+	public RoleViewImpl() {		
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		dateFormat = DateTimeFormat.getFormat("dd/MM/yyyy HH:mm:ss");
@@ -68,69 +62,37 @@ public class GroupViewImpl extends Composite implements CrudView, Editor<UserGro
 	}
 		
 	private void createCellTable() {
-		ugr_id_column = new Column<Model, Number>(new NumberCell()) {
+		rol_id_column = new Column<Model, Number>(new NumberCell()) {
 			
 			@Override
 			public Number getValue(Model object) {
-				return ((UserGroup) object).getUgr_id();
+				return ((Role) object).getRol_id();
 				
 			}};
 		
-		ugr_name_column = new Column<Model, String>(new TextCell()) {
+		rol_name_column = new Column<Model, String>(new TextCell()) {
 			
 			@Override
 			public String getValue(Model object) {
-				return ((UserGroup) object).getUgr_name();
+				return ((Role) object).getRol_name();
 				
 			}};
 		
-		aud_createdBy_column = new Column<Model, String>(new TextCell()){
-
-			@Override
-			public String getValue(Model object) {
-				return ((UserGroup) object).getAud_createdBy();
-			}};
 		
-		aud_createdOn_column = new Column<Model, Date>(new DateCell(dateFormat)){
-
-			@Override
-			public Date getValue(Model object) {
-				return ((UserGroup) object).getAud_createdOn();
-			}};
-			
-		aud_modifiedBy_column = new Column<Model, String>(new TextCell()){
-
-			@Override
-			public String getValue(Model object) {
-				return ((UserGroup) object).getAud_modifiedBy();
-			}};
-		
-		aud_modifiedOn_column = new Column<Model, Date>(new DateCell(dateFormat)){
-
-			@Override
-			public Date getValue(Model object) {
-				return ((UserGroup) object).getAud_modifiedOn();
-			}};
-		
-		
-		ugr_name_column.setSortable(true);
+		rol_name_column.setSortable(true);
 		appCellTable.listHandler.setComparator(
-				ugr_name_column, new Comparator<Model>() {
+				rol_name_column, new Comparator<Model>() {
 			
 			public int compare(Model o1, Model o2) {
-				return ((UserGroup) o1).getUgr_name().compareTo(
-						((UserGroup) o2).getUgr_name());
+				return ((Role) o1).getRol_name().compareTo(
+						((Role) o2).getRol_name());
 				
 			}
 			
 		});
 		
-		appCellTable.cellTable.addColumn(ugr_id_column, "ID");
-		appCellTable.cellTable.addColumn(ugr_name_column, "Name");
-		appCellTable.cellTable.addColumn(aud_createdBy_column, "Created By");
-		appCellTable.cellTable.addColumn(aud_createdOn_column, "Created On");
-		appCellTable.cellTable.addColumn(aud_modifiedBy_column, "Modified By");
-		appCellTable.cellTable.addColumn(aud_modifiedOn_column, "Modified On");
+		appCellTable.cellTable.addColumn(rol_id_column, "ID");
+		appCellTable.cellTable.addColumn(rol_name_column, "Name");
 		
 		
 		

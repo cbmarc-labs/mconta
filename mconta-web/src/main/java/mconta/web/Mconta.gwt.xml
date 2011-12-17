@@ -17,7 +17,7 @@
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
   <!-- Other module inherits                                      -->
-  <inherits name='mconta.core.McontaCore' />
+  <inherits name='mconta.domain.Domain' />
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='mconta.web.client.Mconta' />

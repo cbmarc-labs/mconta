@@ -26,7 +26,7 @@ public class MainViewImpl extends Composite implements MainView {
 	Presenter presenter;
 	
 	@UiField HTMLPanel userpanel;
-	@UiField HTMLPanel grouppanel;
+	@UiField HTMLPanel rolepanel;
 	
 	public MainViewImpl() {		
 		initWidget(uiBinder.createAndBindUi(this));
@@ -42,8 +42,8 @@ public class MainViewImpl extends Composite implements MainView {
 		return userpanel;
 	}
 
-	public HTMLPanel getGroupPanel() {
-		return grouppanel;
+	public HTMLPanel getRolePanel() {
+		return rolepanel;
 	}
 
 }

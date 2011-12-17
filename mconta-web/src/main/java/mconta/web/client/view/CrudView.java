@@ -5,7 +5,7 @@ package mconta.web.client.view;
 
 import java.util.List;
 
-import mconta.core.persistence.Model;
+import mconta.domain.model.Model;
 
 /**
  * @author Marc

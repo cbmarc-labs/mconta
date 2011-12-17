@@ -3,17 +3,21 @@
  */
 package mconta.web.client.view.impl;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import mconta.core.persistence.Model;
-import mconta.core.persistence.User;
+import mconta.domain.model.Model;
+import mconta.domain.model.Role;
+import mconta.domain.model.User;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.presenter.Presenter;
+import mconta.web.client.presenter.impl.UserPresenter.UserView;
 import mconta.web.client.ui.AppCellTable;
-import mconta.web.client.view.CrudView;
+import mconta.web.client.ui.ObjectListBox;
 
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.cell.client.NumberCell;
@@ -26,9 +30,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.CellPreviewEvent;
@@ -38,7 +42,7 @@ import com.google.gwt.view.client.CellPreviewEvent.Handler;
  * @author Marc
  *
  */
-public class UserViewImpl extends Composite implements CrudView, Editor<User> {
+public class UserViewImpl extends Composite implements UserView, Editor<User> {
 
 	private static MainUiBinder uiBinder = GWT.create(MainUiBinder.class);
 	
@@ -47,17 +51,14 @@ public class UserViewImpl extends Composite implements CrudView, Editor<User> {
 	interface MainUiBinder extends UiBinder<Widget, UserViewImpl> {}
 
 	@UiField TextBox use_name;
-	@UiField ListBox use_usergroup;
+	@UiField TextBox use_password;
+	@UiField ObjectListBox<Model> use_roles;
 	@UiField Button submitButton;
 	@UiField Button deleteButton;
 	@UiField AppCellTable<Model> appCellTable;
 	
 	Column<Model, Number> use_id_column;
 	Column<Model, String> use_name_column;
-	Column<Model, String> aud_createdBy_column;
-	Column<Model, Date> aud_createdOn_column;
-	Column<Model, String> aud_modifiedBy_column;
-	Column<Model, Date> aud_modifiedOn_column;
 	
 	DateTimeFormat dateFormat;
 	
@@ -86,34 +87,6 @@ public class UserViewImpl extends Composite implements CrudView, Editor<User> {
 				
 			}};
 		
-		aud_createdBy_column = new Column<Model, String>(new TextCell()){
-
-			@Override
-			public String getValue(Model object) {
-				return ((User) object).getAud_createdBy();
-			}};
-		
-		aud_createdOn_column = new Column<Model, Date>(new DateCell(dateFormat)){
-
-			@Override
-			public Date getValue(Model object) {
-				return ((User) object).getAud_createdOn();
-			}};
-			
-		aud_modifiedBy_column = new Column<Model, String>(new TextCell()){
-
-			@Override
-			public String getValue(Model object) {
-				return ((User) object).getAud_modifiedBy();
-			}};
-		
-		aud_modifiedOn_column = new Column<Model, Date>(new DateCell(dateFormat)){
-
-			@Override
-			public Date getValue(Model object) {
-				return ((User) object).getAud_modifiedOn();
-			}};
-		
 		
 		use_name_column.setSortable(true);
 		appCellTable.listHandler.setComparator(
@@ -129,10 +102,6 @@ public class UserViewImpl extends Composite implements CrudView, Editor<User> {
 		
 		appCellTable.cellTable.addColumn(use_id_column, "ID");
 		appCellTable.cellTable.addColumn(use_name_column, "Name");
-		appCellTable.cellTable.addColumn(aud_createdBy_column, "Created By");
-		appCellTable.cellTable.addColumn(aud_createdOn_column, "Created On");
-		appCellTable.cellTable.addColumn(aud_modifiedBy_column, "Modified By");
-		appCellTable.cellTable.addColumn(aud_modifiedOn_column, "Modified On");
 		
 		
 		
@@ -176,6 +145,25 @@ public class UserViewImpl extends Composite implements CrudView, Editor<User> {
 	public void setPresenter(Presenter presenter) {
 		this.presenter = (CrudPresenter) presenter;
 		
+	}
+
+	public void setRoleData(List<Model> list) {
+		for(Model role: list) {
+			use_roles.addItem(((Role)role).getRol_name(), role);
+		}
+		
+	}
+
+	public List<Role> getRoleData() {
+		List<Role> roles = new ArrayList<Role>();
+		
+		if(use_roles.getSelectedIndex() != -1) {
+			Role role = (Role) use_roles.getItem(use_roles.getSelectedIndex());
+		
+			roles.add(role);
+		}
+		
+		return roles;
 	}
 
 }

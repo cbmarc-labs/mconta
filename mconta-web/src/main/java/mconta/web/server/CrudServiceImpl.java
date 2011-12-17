@@ -3,14 +3,11 @@
  */
 package mconta.web.server;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import mconta.core.dao.CrudDAO;
-import mconta.core.persistence.Model;
-import mconta.core.persistence.User;
-import mconta.core.persistence.UserGroup;
+import mconta.domain.dao.CrudDAO;
+import mconta.domain.model.Model;
 import mconta.web.client.rpc.CrudService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,17 +49,20 @@ public class CrudServiceImpl
 	}
 
 	public List<Model> getAll(String model) throws Exception {
-		List<Model> all = null;
-
+		List<Model> list = null;
+		
 		try {
-			all = dao.getAll(model);
+			list = dao.getAll(model);
+			
+			for(Model m: list)
+				m.deHibernate();
 			
 		} catch(Exception e) {
 			throw new Exception(e);
 			
 		}
 		
-		return all;
+		return list;
 		
 	}
 
