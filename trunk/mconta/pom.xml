@@ -38,7 +38,7 @@
     </build>
   
   <modules>
-  	<module>../mconta-core</module>
+  	<module>../mconta-domain</module>
   	<module>../mconta-web</module>
   	<!-- <module>../mconta-client</module> -->
   </modules>
