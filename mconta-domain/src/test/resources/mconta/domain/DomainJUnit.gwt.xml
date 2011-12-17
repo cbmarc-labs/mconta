@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='mconta.domain.Domain' />
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/Domain/greet" class="mconta.domain.server.GreetingServiceImpl" />
+
+</module>
