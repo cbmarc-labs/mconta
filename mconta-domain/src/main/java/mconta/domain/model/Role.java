@@ -3,11 +3,17 @@
  */
 package mconta.domain.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +34,24 @@ public class Role implements Model {
 	@Column(name = "ROL_NAME", nullable = false, length = 25)
     private String rol_name;
 	
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, 
+			mappedBy = "use_roles")
+	private List<User> rol_users;
+	
+	/**
+	 * @return the rol_users
+	 */
+	public List<User> getRol_users() {
+		return rol_users;
+	}
+
+	/**
+	 * @param rol_users the rol_users to set
+	 */
+	public void setRol_users(List<User> rol_users) {
+		this.rol_users = rol_users;
+	}
+
 	public Role() {
     }
 
@@ -72,7 +96,14 @@ public class Role implements Model {
 
 	@Override
 	public void deHibernate() {
-		// TODO Auto-generated method stub
+		ArrayList<User> arrayList = new ArrayList<User>();
+		
+		for(User user: getRol_users()) {
+			user.setUse_roles(null);
+			arrayList.add(user);
+		}
+		
+		setRol_users(arrayList);
 		
 	}
 
