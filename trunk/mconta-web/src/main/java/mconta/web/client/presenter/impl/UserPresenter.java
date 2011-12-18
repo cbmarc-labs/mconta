@@ -19,7 +19,6 @@ import mconta.web.client.view.impl.UserViewImpl;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
@@ -88,7 +87,7 @@ public class UserPresenter implements CrudPresenter {
 
 	public void doSave() {
 		entity = driver.flush();
-		entity.setUse_role(view.getRoleData());
+		entity.setUse_roles(view.getRoleData());
 		
 		service.saveOrUpdate(entity, new AppAsyncCallback<Void>(){
 

@@ -54,8 +54,9 @@ public class CrudServiceImpl
 		try {
 			list = dao.getAll(model);
 			
-			for(Model m: list)
+			for(Model m: list) {
 				m.deHibernate();
+			}
 			
 		} catch(Exception e) {
 			throw new Exception(e);

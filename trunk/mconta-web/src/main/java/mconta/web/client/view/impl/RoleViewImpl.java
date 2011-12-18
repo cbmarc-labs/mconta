@@ -9,6 +9,7 @@ import java.util.Set;
 
 import mconta.domain.model.Model;
 import mconta.domain.model.Role;
+import mconta.domain.model.User;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.presenter.Presenter;
 import mconta.web.client.ui.AppCellTable;
@@ -50,6 +51,7 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 	
 	Column<Model, Number> rol_id_column;
 	Column<Model, String> rol_name_column;
+	Column<Model, String> rol_users_column;
 	
 	DateTimeFormat dateFormat;
 	
@@ -77,7 +79,21 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 				return ((Role) object).getRol_name();
 				
 			}};
-		
+			
+		rol_users_column = new Column<Model, String>(new TextCell()) {
+			
+			@Override
+			public String getValue(Model object) {
+				StringBuilder build = new StringBuilder();
+				List<User> users = ((Role)object).getRol_users();
+				
+				for(User user : users) {
+					build.append(user.getUse_name() + " ");
+				}
+				
+				return build.toString();
+				
+			}};
 		
 		rol_name_column.setSortable(true);
 		appCellTable.listHandler.setComparator(
@@ -93,6 +109,7 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 		
 		appCellTable.cellTable.addColumn(rol_id_column, "ID");
 		appCellTable.cellTable.addColumn(rol_name_column, "Name");
+		appCellTable.cellTable.addColumn(rol_users_column, "Users");
 		
 		
 		
