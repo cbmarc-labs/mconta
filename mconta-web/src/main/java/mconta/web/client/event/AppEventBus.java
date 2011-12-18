@@ -13,5 +13,10 @@ public class AppEventBus extends HandlerManager {
 	public static AppEventBus getAppEventBus() {
 		return appEventBus;
 	}
+	
+	public static AppEventBus getEventBus() {
+		return appEventBus;
+		
+	}
 
 }

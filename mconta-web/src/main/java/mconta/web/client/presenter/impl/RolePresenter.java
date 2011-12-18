@@ -8,6 +8,10 @@ import java.util.Set;
 
 import mconta.domain.model.Model;
 import mconta.domain.model.Role;
+import mconta.web.client.event.AppEventBus;
+import mconta.web.client.event.RoleEvent;
+import mconta.web.client.event.UserEvent;
+import mconta.web.client.event.UserHandler;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
@@ -24,10 +28,12 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * @author Marc
  *
  */
-public class RolePresenter implements CrudPresenter {
+public class RolePresenter implements CrudPresenter, UserHandler {
 	
 	private final CrudServiceAsync service = GWT.create(CrudService.class);
 	interface Driver extends SimpleBeanEditorDriver<Role, RoleViewImpl> {}
+	
+	private AppEventBus eventBus = AppEventBus.getEventBus();
 	
 	Driver driver = GWT.create(Driver.class);
 	
@@ -42,6 +48,8 @@ public class RolePresenter implements CrudPresenter {
 		
 		driver.initialize((RoleViewImpl) view);
 		driver.edit(entity);
+		
+		eventBus.addHandler(UserEvent.getType(), this);
 		
 		bind();
 		
@@ -78,16 +86,18 @@ public class RolePresenter implements CrudPresenter {
 			public void onSuccess(Void result) {
 				entity = new Role();
 				driver.edit(entity);
+				eventBus.fireEvent(new RoleEvent());
 				
 				doLoad();
 				
 			}});
 	}
 
-	public void doDelete(Set<Model> selectedSet) {		
+	public void doDelete(Set<Model> selectedSet) {
 		service.deleteAll(selectedSet, new AppAsyncCallback<Void>(){
 
 			public void onSuccess(Void result) {
+				eventBus.fireEvent(new RoleEvent());
 				doLoad();
 				
 			}});
@@ -95,8 +105,13 @@ public class RolePresenter implements CrudPresenter {
 	}
 
 	public void doEdit(Model model) {
-		this.entity = (Role) model;
+		this.entity = (Role) model;		
 		driver.edit((Role) model);
+		
+	}
+
+	public void onEvent() {
+		doLoad();
 		
 	}
 
