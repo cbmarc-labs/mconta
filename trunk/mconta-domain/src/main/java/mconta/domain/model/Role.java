@@ -34,7 +34,7 @@ public class Role implements Model {
 	@Column(name = "ROL_NAME", nullable = false, length = 25)
     private String rol_name;
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, 
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE, 
 			mappedBy = "use_roles")
 	private List<User> rol_users;
 	

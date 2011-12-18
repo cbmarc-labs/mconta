@@ -43,7 +43,7 @@ public class User implements Model {
 
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="USER_ROLE",
-		joinColumns={ @JoinColumn(name="USE_ID", referencedColumnName="USE_ID", nullable = false, insertable = false, updatable = false) },
+		joinColumns={ @JoinColumn(name="USE_ID", referencedColumnName="USE_ID") },
 		inverseJoinColumns={ @JoinColumn(name="ROL_ID", referencedColumnName="ROL_ID") })
 	protected List<Role> use_roles;
 
