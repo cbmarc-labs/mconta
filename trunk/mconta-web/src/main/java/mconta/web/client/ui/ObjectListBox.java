@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.ListBox;
  */
 public class ObjectListBox<T extends Object> extends ListBox {
 	
-	private List<T> items;
+	private List<T> items = null;
 	
 	public ObjectListBox() {
 		super();
@@ -43,5 +43,17 @@ public class ObjectListBox<T extends Object> extends ListBox {
     public T getItem(final int index) {
         return items.get(index);
     }
+
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.ListBox#clear()
+	 */
+	@Override
+	public void clear() {
+		if(items != null)
+			if(items.isEmpty() == false)
+				items.clear();
+			
+		super.clear();
+	}
 
 }

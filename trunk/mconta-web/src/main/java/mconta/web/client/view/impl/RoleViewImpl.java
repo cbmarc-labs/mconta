@@ -25,6 +25,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
@@ -140,9 +141,11 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 	
 	@UiHandler("deleteButton")
 	void deleteButtonClick(ClickEvent e) {
-		Set<Model> selectedSet = appCellTable.selectionModel.getSelectedSet();
+		if(Window.confirm("Are you sure?")) {
+			Set<Model> selectedSet = appCellTable.selectionModel.getSelectedSet();
 		
-		presenter.doDelete(selectedSet);
+			presenter.doDelete(selectedSet);
+		}
 	}
 
 	public void setData(List<Model> data) {		

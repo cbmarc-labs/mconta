@@ -9,6 +9,10 @@ import java.util.Set;
 import mconta.domain.model.Model;
 import mconta.domain.model.Role;
 import mconta.domain.model.User;
+import mconta.web.client.event.AppEventBus;
+import mconta.web.client.event.RoleEvent;
+import mconta.web.client.event.RoleHandler;
+import mconta.web.client.event.UserEvent;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
@@ -25,7 +29,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
  * @author Marc
  *
  */
-public class UserPresenter implements CrudPresenter {
+public class UserPresenter implements CrudPresenter, RoleHandler {
 	
 	public interface UserView extends CrudView {
 		
@@ -36,6 +40,8 @@ public class UserPresenter implements CrudPresenter {
 	
 	private final CrudServiceAsync service = GWT.create(CrudService.class);
 	interface Driver extends SimpleBeanEditorDriver<User, UserViewImpl> {}
+	
+	private AppEventBus eventBus = AppEventBus.getEventBus();
 	
 	Driver driver = GWT.create(Driver.class);
 	
@@ -50,6 +56,8 @@ public class UserPresenter implements CrudPresenter {
 		
 		driver.initialize((UserViewImpl) view);
 		driver.edit(entity);
+		
+		eventBus.addHandler(RoleEvent.getType(), this);
 		
 		bind();
 		
@@ -97,6 +105,8 @@ public class UserPresenter implements CrudPresenter {
 				
 				doLoad();
 				
+				eventBus.fireEvent(new UserEvent());
+				
 			}});
 	}
 
@@ -106,6 +116,8 @@ public class UserPresenter implements CrudPresenter {
 			public void onSuccess(Void result) {
 				doLoad();
 				
+				eventBus.fireEvent(new UserEvent());
+				
 			}});
 		
 	}
@@ -113,6 +125,11 @@ public class UserPresenter implements CrudPresenter {
 	public void doEdit(Model model) {
 		this.entity = (User) model;
 		driver.edit((User) model);
+		
+	}
+
+	public void onEvent() {
+		doLoad();
 		
 	}
 
