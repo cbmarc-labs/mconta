@@ -6,7 +6,6 @@ package mconta.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -43,7 +41,7 @@ public class User implements Model {
 	@Column(name = "USE_ENABLED", length = 1)
 	protected Boolean use_enabled;
 
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="USER_ROLE",
 		joinColumns={ @JoinColumn(name="USE_ID", referencedColumnName="USE_ID", nullable = false, insertable = false, updatable = false) },
 		inverseJoinColumns={ @JoinColumn(name="ROL_ID", referencedColumnName="ROL_ID") })
@@ -119,21 +117,26 @@ public class User implements Model {
 	/**
 	 * @return the use_role
 	 */
-	public List<Role> getUse_role() {
+	public List<Role> getUse_roles() {
 		return use_roles;
 	}
 
 	/**
 	 * @param use_role the use_role to set
 	 */
-	public void setUse_role(List<Role> use_roles) {
+	public void setUse_roles(List<Role> use_roles) {
 		this.use_roles = use_roles;
 	}
 	
 	public void deHibernate() {
-		ArrayList<Role> arrayList = new ArrayList<Role>()	;
-		arrayList.addAll(this.getUse_role());
-		this.setUse_role(arrayList);
+		ArrayList<Role> arrayList = new ArrayList<Role>();
+		
+		for(Role role: getUse_roles()) {
+			role.setRol_users(null);
+			arrayList.add(role);
+		}
+		
+		setUse_roles(arrayList);
 	}
 	
 	public String toString() { 
