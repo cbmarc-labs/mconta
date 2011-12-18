@@ -5,8 +5,6 @@ package mconta.web.client.view.impl;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,7 +17,6 @@ import mconta.web.client.presenter.impl.UserPresenter.UserView;
 import mconta.web.client.ui.AppCellTable;
 import mconta.web.client.ui.ObjectListBox;
 
-import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
@@ -30,7 +27,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.Column;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
@@ -59,6 +55,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 	
 	Column<Model, Number> use_id_column;
 	Column<Model, String> use_name_column;
+	Column<Model, String> use_roles_column;
 	
 	DateTimeFormat dateFormat;
 	
@@ -87,6 +84,21 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 				
 			}};
 		
+		use_roles_column = new Column<Model, String>(new TextCell()) {
+			
+			@Override
+			public String getValue(Model object) {
+				StringBuilder build = new StringBuilder();
+				List<Role> roles = ((User)object).getUse_roles();
+				
+				for(Role role : roles) {
+					build.append(role.getRol_name() + " ");
+				}
+				
+				return build.toString();
+				
+			}};
+		
 		
 		use_name_column.setSortable(true);
 		appCellTable.listHandler.setComparator(
@@ -102,6 +114,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 		
 		appCellTable.cellTable.addColumn(use_id_column, "ID");
 		appCellTable.cellTable.addColumn(use_name_column, "Name");
+		appCellTable.cellTable.addColumn(use_roles_column, "Roles");
 		
 		
 		
@@ -148,6 +161,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 	}
 
 	public void setRoleData(List<Model> list) {
+		use_roles.clear();
 		for(Model role: list) {
 			use_roles.addItem(((Role)role).getRol_name(), role);
 		}
