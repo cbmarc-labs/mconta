@@ -61,7 +61,7 @@ public class AppCellTable<T> extends Composite {
 		
 		selectionModel = new MultiSelectionModel<T>();
 		cellTable.setSelectionModel(selectionModel,
-		        DefaultSelectionEventManager.<T> createCheckboxManager());
+		        DefaultSelectionEventManager.<T> createCheckboxManager(0));
 		
 		cellTable.setSelectionModel(selectionModel);
 		
