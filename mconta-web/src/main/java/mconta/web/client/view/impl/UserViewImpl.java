@@ -15,11 +15,14 @@ import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.presenter.Presenter;
 import mconta.web.client.presenter.impl.UserPresenter.UserView;
 import mconta.web.client.ui.AppCellTable;
+import mconta.web.client.ui.AppDialogBox;
 import mconta.web.client.ui.ObjectListBox;
 
+import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -56,6 +59,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 	
 	Column<Model, Number> use_id_column;
 	Column<Model, String> use_name_column;
+	Column<Model, Boolean> use_enabled_column;
 	Column<Model, String> use_roles_column;
 	
 	DateTimeFormat dateFormat;
@@ -84,6 +88,16 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 				return ((User) object).getUse_name();
 				
 			}};
+			
+		use_enabled_column = new Column<Model, Boolean>(
+				new CheckboxCell(true, false)){
+
+			@Override
+			public Boolean getValue(Model object) {
+				return ((User)object).getUse_enabled();
+				
+			}};
+		appCellTable.cellTable.setColumnWidth(use_enabled_column, 6.0, Unit.EM);
 		
 		use_roles_column = new Column<Model, String>(new TextCell()) {
 			
@@ -115,6 +129,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 		
 		appCellTable.cellTable.addColumn(use_id_column, "ID");
 		appCellTable.cellTable.addColumn(use_name_column, "Name");
+		appCellTable.cellTable.addColumn(use_enabled_column, "Enabled");
 		appCellTable.cellTable.addColumn(use_roles_column, "Roles");
 		
 		
@@ -129,7 +144,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 			public void onCellPreview(CellPreviewEvent<Model> event) {
 				boolean isClick = event.getNativeEvent().getType().equals("click");
 				
-				if (event.getColumn() != 0 && isClick) {
+				if (event.getColumn() != 0 && event.getColumn() != 3 && isClick) {
 					presenter.doEdit(event.getValue());
 					
 				}
@@ -139,7 +154,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 	}
 
 	@UiHandler("submitButton")
-	void submitButtonClick(ClickEvent e) {
+	void submitButtonClick(ClickEvent e) {		
 		presenter.doSave();
 		
 	}
