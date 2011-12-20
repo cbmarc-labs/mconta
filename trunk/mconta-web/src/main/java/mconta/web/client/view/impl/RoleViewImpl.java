@@ -10,6 +10,7 @@ import java.util.Set;
 import mconta.domain.model.Model;
 import mconta.domain.model.Role;
 import mconta.domain.model.User;
+import mconta.web.client.i18n.AppConstants;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.presenter.Presenter;
 import mconta.web.client.ui.AppCellTable;
@@ -18,6 +19,7 @@ import mconta.web.client.view.CrudView;
 import com.google.gwt.cell.client.NumberCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -40,6 +42,7 @@ import com.google.gwt.view.client.CellPreviewEvent.Handler;
 public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 
 	private static MainUiBinder uiBinder = GWT.create(MainUiBinder.class);
+	AppConstants i18n = GWT.create(AppConstants.class);
 	
 	CrudPresenter presenter;
 
@@ -72,6 +75,7 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 				return ((Role) object).getRol_id();
 				
 			}};
+		appCellTable.cellTable.setColumnWidth(rol_id_column, 6.0, Unit.EM);
 		
 		rol_name_column = new Column<Model, String>(new TextCell()) {
 			
@@ -80,6 +84,7 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 				return ((Role) object).getRol_name();
 				
 			}};
+		appCellTable.cellTable.setColumnWidth(rol_name_column, 20.0, Unit.EM);
 			
 		rol_users_column = new Column<Model, String>(new TextCell()) {
 			
@@ -88,8 +93,10 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 				StringBuilder build = new StringBuilder();
 				List<User> users = ((Role)object).getRol_users();
 				
+				String delim = "";
 				for(User user : users) {
-					build.append(user.getUse_name() + " ");
+					build.append(delim).append(user.getUse_name());
+					delim = ", ";
 				}
 				
 				return build.toString();
@@ -108,9 +115,9 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 			
 		});
 		
-		appCellTable.cellTable.addColumn(rol_id_column, "ID");
-		appCellTable.cellTable.addColumn(rol_name_column, "Name");
-		appCellTable.cellTable.addColumn(rol_users_column, "Users");
+		appCellTable.cellTable.addColumn(rol_id_column, i18n.cellTable_column_rol_id());
+		appCellTable.cellTable.addColumn(rol_name_column, i18n.cellTable_column_rol_name());
+		appCellTable.cellTable.addColumn(rol_users_column, i18n.cellTable_column_rol_users());
 		
 		
 		
@@ -141,7 +148,7 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 	
 	@UiHandler("deleteButton")
 	void deleteButtonClick(ClickEvent e) {
-		if(Window.confirm("Are you sure?")) {
+		if(Window.confirm(i18n.common_areyousure())) {
 			Set<Model> selectedSet = appCellTable.selectionModel.getSelectedSet();
 		
 			presenter.doDelete(selectedSet);

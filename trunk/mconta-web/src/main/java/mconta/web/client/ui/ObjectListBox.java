@@ -16,6 +16,10 @@ public class ObjectListBox<T extends Object> extends ListBox {
 		super();
 	}
 	
+	public ObjectListBox(boolean isMultipleSelect) {
+		super(isMultipleSelect);
+	}
+
 	/**
      * Adds an {@link Object} to the list.
      * 
