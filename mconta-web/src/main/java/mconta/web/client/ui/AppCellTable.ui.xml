@@ -3,32 +3,33 @@
   xmlns:ui="urn:ui:com.google.gwt.uibinder"
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:c="urn:import:com.google.gwt.user.cellview.client">
+  <ui:with field="i18n" type="mconta.web.client.i18n.AppConstants" />
 
   <ui:style>
     .cellTable {
       border-bottom: 1px solid #ccc;
       text-align: left;
       margin-bottom: 4px;
+      width: 100%;
     }
   </ui:style>
 
   <g:HTMLPanel>
     <table cellspacing='0' cellpadding='0' style='width:100%;'>
       <tr>
-        <td
-          valign='top'>
-          <c:CellTable
-            addStyleNames='{style.cellTable}'
-            pageSize='10'
-            width='100%'
-            ui:field='cellTable' />
+        <td colspan="2" valign='top'>
+          <c:CellTable ui:field='cellTable' addStyleNames='{style.cellTable}' />
         </td>
       </tr>
       <tr>
-        <td
-          align='left'>
-          <c:SimplePager
-            ui:field='simplePager' />
+        <td align='left'>
+          <c:SimplePager ui:field='simplePager' />
+        </td>
+        <td align='right'>
+        	<g:Button ui:field="deleteButton"
+        		text="{i18n.common_button_delete}"/>
+        	<g:Button ui:field="addNewButton"
+        		text="{i18n.common_button_add_new}"/>
         </td>
       </tr>
     </table>
