@@ -11,11 +11,11 @@ import java.util.Set;
 import mconta.domain.model.Model;
 import mconta.domain.model.Role;
 import mconta.domain.model.User;
+import mconta.web.client.i18n.AppConstants;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.presenter.Presenter;
 import mconta.web.client.presenter.impl.UserPresenter.UserView;
 import mconta.web.client.ui.AppCellTable;
-import mconta.web.client.ui.AppDialogBox;
 import mconta.web.client.ui.ObjectListBox;
 
 import com.google.gwt.cell.client.CheckboxCell;
@@ -33,6 +33,7 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.CellPreviewEvent;
@@ -45,6 +46,7 @@ import com.google.gwt.view.client.CellPreviewEvent.Handler;
 public class UserViewImpl extends Composite implements UserView, Editor<User> {
 
 	private static MainUiBinder uiBinder = GWT.create(MainUiBinder.class);
+	AppConstants i18n = GWT.create(AppConstants.class);
 	
 	CrudPresenter presenter;
 
@@ -52,7 +54,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 
 	@UiField TextBox use_name;
 	@UiField TextBox use_password;
-	@UiField ObjectListBox<Model> use_roles;
+	@UiField(provided=true) ObjectListBox<Model> use_roles;
 	@UiField Button submitButton;
 	@UiField Button deleteButton;
 	@UiField AppCellTable<Model> appCellTable;
@@ -64,7 +66,9 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 	
 	DateTimeFormat dateFormat;
 	
-	public UserViewImpl() {		
+	public UserViewImpl() {
+		use_roles = new ObjectListBox<Model>(true);
+		use_roles.setVisibleItemCount(5);
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		dateFormat = DateTimeFormat.getFormat("dd/MM/yyyy HH:mm:ss");
@@ -80,6 +84,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 				return ((User) object).getUse_id();
 				
 			}};
+		appCellTable.cellTable.setColumnWidth(use_id_column, 6.0, Unit.EM);
 		
 		use_name_column = new Column<Model, String>(new TextCell()) {
 			
@@ -88,6 +93,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 				return ((User) object).getUse_name();
 				
 			}};
+		appCellTable.cellTable.setColumnWidth(use_name_column, 20.0, Unit.EM);
 			
 		use_enabled_column = new Column<Model, Boolean>(
 				new CheckboxCell(true, false)){
@@ -98,6 +104,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 				
 			}};
 		appCellTable.cellTable.setColumnWidth(use_enabled_column, 6.0, Unit.EM);
+		use_enabled_column.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		
 		use_roles_column = new Column<Model, String>(new TextCell()) {
 			
@@ -106,8 +113,10 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 				StringBuilder build = new StringBuilder();
 				List<Role> roles = ((User)object).getUse_roles();
 				
+				String delim = "";
 				for(Role role : roles) {
-					build.append(role.getRol_name() + " ");
+					build.append(delim).append(role.getRol_name());
+					delim = ", ";
 				}
 				
 				return build.toString();
@@ -127,10 +136,10 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 			
 		});
 		
-		appCellTable.cellTable.addColumn(use_id_column, "ID");
-		appCellTable.cellTable.addColumn(use_name_column, "Name");
-		appCellTable.cellTable.addColumn(use_enabled_column, "Enabled");
-		appCellTable.cellTable.addColumn(use_roles_column, "Roles");
+		appCellTable.cellTable.addColumn(use_id_column, i18n.cellTable_column_use_id());
+		appCellTable.cellTable.addColumn(use_name_column, i18n.cellTable_column_use_name());
+		appCellTable.cellTable.addColumn(use_enabled_column, i18n.cellTable_column_use_enabled());
+		appCellTable.cellTable.addColumn(use_roles_column, i18n.cellTable_column_use_roles());
 		
 		
 		
@@ -161,7 +170,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 	
 	@UiHandler("deleteButton")
 	void deleteButtonClick(ClickEvent e) {
-		if(Window.confirm("Are you sure?")) {
+		if(Window.confirm(i18n.common_areyousure())) {
 			Set<Model> selectedSet = appCellTable.selectionModel.getSelectedSet();
 		
 			presenter.doDelete(selectedSet);

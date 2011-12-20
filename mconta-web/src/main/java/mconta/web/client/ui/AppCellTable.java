@@ -36,6 +36,15 @@ public class AppCellTable<T> extends Composite {
 	interface AppCellTableUiBinder extends UiBinder<Widget, AppCellTable> {
 	}
 	
+	public interface CellTableResource extends CellTable.Resources {
+		
+		public interface CellTableStyle extends CellTable.Style {};
+		
+		@Source({"AppCellTable.css"})
+		CellTableStyle cellTableStyle();
+		
+	}
+	
 	public ListDataProvider<T> dataProvider;
 	public ListHandler<T> listHandler;
 	
@@ -48,7 +57,7 @@ public class AppCellTable<T> extends Composite {
 		dataProvider = new ListDataProvider<T>();
 		listHandler = new ListHandler<T>(dataProvider.getList());
 		
-		cellTable = new CellTable<T>();
+		cellTable = new CellTable<T>(10, (CellTableResource) GWT.create(CellTableResource.class));
 		cellTable.addColumnSortHandler(listHandler);
 		
 		SimplePager.Resources pagerResources = GWT.create(SimplePager.Resources.class);

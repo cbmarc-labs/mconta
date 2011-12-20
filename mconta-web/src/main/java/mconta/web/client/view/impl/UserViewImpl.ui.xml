@@ -3,6 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:c="urn:import:mconta.web.client.ui"
 	xmlns:f="urn:import:mconta.web.client.view">
+	<ui:with field="i18n" type="mconta.web.client.i18n.AppConstants" />
 	<ui:style>
 		.important {
 			font-weight: bold;
@@ -10,16 +11,16 @@
 	</ui:style>
 	
 	<g:HTMLPanel>
-	
-		UserName :
+		
+		<ui:text from="{i18n.form_label_use_name}" />
 		<g:TextBox ui:field="use_name"/>
-		Password :
-		<g:TextBox ui:field="use_password"/>
-		Role :
+		<ui:text from="{i18n.form_label_use_password}" />
+		<g:TextBox ui:field="use_password" />
+		<ui:text from="{i18n.form_label_use_roles}" />
 		<c:ObjectListBox ui:field="use_roles"/>
 		
-		<g:Button ui:field="submitButton" text="Submit"/>
-		<g:Button ui:field="deleteButton" text="Delete Selected Items"/>
+		<g:Button ui:field="submitButton" text="{i18n.common_form_button_submit}"/>
+		<g:Button ui:field="deleteButton" text="{i18n.common_form_button_delete_all}"/>
 		
 		<c:AppCellTable ui:field="appCellTable"/>
 		

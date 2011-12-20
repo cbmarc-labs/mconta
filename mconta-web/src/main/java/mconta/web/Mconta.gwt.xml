@@ -15,6 +15,10 @@
   <inherits name='com.google.gwt.user.theme.standard.Standard' />
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+  
+  <inherits name="com.google.gwt.i18n.I18N" />
+  <extend-property name="locale" values="en" />
+  <set-property-fallback name="locale" value="en" />
 
   <!-- Other module inherits                                      -->
   <inherits name='mconta.domain.Domain' />
