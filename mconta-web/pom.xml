@@ -102,7 +102,7 @@
           <runTarget>Mconta.html</runTarget>
           <hostedWebapp>${webappDirectory}</hostedWebapp>
           <i18nMessagesBundles>
-          	<i18nMessagesBundle>mconta.web.client.Messages</i18nMessagesBundle>
+          	<i18nMessagesBundle>mconta.web.client.i18n.AppConstants</i18nMessagesBundle>
           </i18nMessagesBundles>
         </configuration>
       </plugin>
