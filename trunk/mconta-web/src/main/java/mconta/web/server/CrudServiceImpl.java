@@ -18,12 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @SuppressWarnings("serial")
 public class CrudServiceImpl
-	extends SpringRemoteServiceServlet implements CrudService {	
+	extends SpringRemoteServiceServlet implements CrudService {
 		
 	@Autowired
 	protected CrudDAO<Model> dao;
 
-	public void saveOrUpdate(Model model) throws Exception {		
+	public void saveOrUpdate(Model model) throws Exception {
 		try {
 			dao.saveOrUpdate(model);
 			
