@@ -16,7 +16,6 @@
 		<g:TextBox ui:field="rol_name"></g:TextBox>
 		
 		<g:Button ui:field="submitButton" text="{i18n.common_form_button_submit}"/>
-		<g:Button ui:field="deleteButton" text="{i18n.common_form_button_delete_all}"/>
 		
 		<c:AppCellTable ui:field="appCellTable"></c:AppCellTable>
 		

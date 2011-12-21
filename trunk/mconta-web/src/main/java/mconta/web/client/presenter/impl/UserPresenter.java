@@ -11,7 +11,7 @@ import mconta.domain.model.Role;
 import mconta.domain.model.User;
 import mconta.web.client.event.AppEventBus;
 import mconta.web.client.event.RoleEvent;
-import mconta.web.client.event.RoleHandler;
+import mconta.web.client.event.RoleEvent.RoleHandler;
 import mconta.web.client.event.UserEvent;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.rpc.AppAsyncCallback;

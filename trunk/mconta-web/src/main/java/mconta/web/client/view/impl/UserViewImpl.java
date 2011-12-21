@@ -11,6 +11,7 @@ import java.util.Set;
 import mconta.domain.model.Model;
 import mconta.domain.model.Role;
 import mconta.domain.model.User;
+import mconta.web.client.event.AppCellTableEvent.AppCellTableHandler;
 import mconta.web.client.i18n.AppConstants;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.presenter.Presenter;
@@ -43,7 +44,8 @@ import com.google.gwt.view.client.CellPreviewEvent.Handler;
  * @author Marc
  *
  */
-public class UserViewImpl extends Composite implements UserView, Editor<User> {
+public class UserViewImpl extends Composite 
+		implements UserView, Editor<User>, AppCellTableHandler {
 
 	private static MainUiBinder uiBinder = GWT.create(MainUiBinder.class);
 	AppConstants i18n = GWT.create(AppConstants.class);
@@ -56,7 +58,6 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 	@UiField TextBox use_password;
 	@UiField(provided=true) ObjectListBox<Model> use_roles;
 	@UiField Button submitButton;
-	@UiField Button deleteButton;
 	@UiField AppCellTable<Model> appCellTable;
 	
 	Column<Model, Number> use_id_column;
@@ -69,9 +70,12 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 	public UserViewImpl() {
 		use_roles = new ObjectListBox<Model>(true);
 		use_roles.setVisibleItemCount(5);
+		
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		dateFormat = DateTimeFormat.getFormat("dd/MM/yyyy HH:mm:ss");
+		
+		appCellTable.addAppCellTableHandler(this);
 		
 		createCellTable();
 	}
@@ -167,15 +171,6 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 		presenter.doSave();
 		
 	}
-	
-	@UiHandler("deleteButton")
-	void deleteButtonClick(ClickEvent e) {
-		if(Window.confirm(i18n.common_areyousure())) {
-			Set<Model> selectedSet = appCellTable.selectionModel.getSelectedSet();
-		
-			presenter.doDelete(selectedSet);
-		}
-	}
 
 	public void setData(List<Model> data) {		
 		appCellTable.setData(data);
@@ -187,7 +182,7 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 		
 	}
 
-	public void setRoleData(List<Model> list) {
+	public void setRoleData(List<Model> list) {		
 		use_roles.clear();
 		for(Model role: list) {
 			use_roles.addItem(((Role)role).getRol_name(), role);
@@ -205,6 +200,20 @@ public class UserViewImpl extends Composite implements UserView, Editor<User> {
 		}
 		
 		return roles;
+	}
+
+	public void onDeleteButtonClicked() {
+		if(Window.confirm(i18n.common_areyousure())) {
+			Set<Model> selectedSet = appCellTable.selectionModel.getSelectedSet();
+		
+			presenter.doDelete(selectedSet);
+		}
+		
+	}
+
+	public void onAddNewButtonClicked() {
+		Window.alert("onAddNewButtonClicked");
+		
 	}
 
 }

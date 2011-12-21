@@ -5,17 +5,24 @@ package mconta.web.client.ui;
 
 import java.util.List;
 
+import mconta.web.client.event.AppCellTableEvent;
+
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
@@ -31,6 +38,8 @@ public class AppCellTable<T> extends Composite {
 
 	private static AppCellTableUiBinder uiBinder = GWT
 			.create(AppCellTableUiBinder.class);
+	
+	HandlerManager handlerManager;
 
 	@SuppressWarnings("rawtypes")
 	interface AppCellTableUiBinder extends UiBinder<Widget, AppCellTable> {}
@@ -51,8 +60,11 @@ public class AppCellTable<T> extends Composite {
 	
 	@UiField(provided = true) public CellTable<T> cellTable;
 	@UiField(provided = true) public SimplePager simplePager;
+	@UiField Button deleteButton;
 	
 	public AppCellTable() {
+		handlerManager = new HandlerManager(this);
+		
 		dataProvider = new ListDataProvider<T>();
 		listHandler = new ListHandler<T>(dataProvider.getList());
 		
@@ -76,6 +88,24 @@ public class AppCellTable<T> extends Composite {
 		initTableColumns();
 		
 		initWidget(uiBinder.createAndBindUi(this));
+	}
+	
+	@UiHandler("deleteButton")
+	public void onDeleteButtonClicked(ClickEvent event) {
+		handlerManager.fireEvent(AppCellTableEvent.delete());
+		
+	}
+	
+	@UiHandler("addNewButton")
+	public void onAddNewButtonClicked(ClickEvent event) {
+		handlerManager.fireEvent(AppCellTableEvent.addnew());
+		
+	}
+	
+	public HandlerRegistration addAppCellTableHandler(
+			AppCellTableEvent.AppCellTableHandler handler) {
+		return handlerManager.addHandler(AppCellTableEvent.getType(), handler);
+		
 	}
 	
 	private void initTableColumns() {		

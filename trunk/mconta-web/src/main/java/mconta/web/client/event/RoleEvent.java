@@ -1,8 +1,13 @@
 package mconta.web.client.event;
 
+import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 
-public class RoleEvent extends GwtEvent<RoleHandler> {
+public class RoleEvent extends GwtEvent<RoleEvent.RoleHandler> {
+	
+	public interface RoleHandler extends EventHandler {
+		public void onEvent();
+	}
 	
 	private static Type<RoleHandler> TYPE = new Type<RoleHandler>();
 		
