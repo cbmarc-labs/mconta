@@ -20,7 +20,6 @@
 		<c:ObjectListBox ui:field="use_roles"/>
 		
 		<g:Button ui:field="submitButton" text="{i18n.common_form_button_submit}"/>
-		<g:Button ui:field="deleteButton" text="{i18n.common_form_button_delete_all}"/>
 		
 		<c:AppCellTable ui:field="appCellTable"/>
 		

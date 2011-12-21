@@ -10,6 +10,7 @@ import java.util.Set;
 import mconta.domain.model.Model;
 import mconta.domain.model.Role;
 import mconta.domain.model.User;
+import mconta.web.client.event.AppCellTableEvent.AppCellTableHandler;
 import mconta.web.client.i18n.AppConstants;
 import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.presenter.Presenter;
@@ -39,7 +40,8 @@ import com.google.gwt.view.client.CellPreviewEvent.Handler;
  * @author Marc
  *
  */
-public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
+public class RoleViewImpl extends Composite 
+		implements CrudView, Editor<Role>, AppCellTableHandler {
 
 	private static MainUiBinder uiBinder = GWT.create(MainUiBinder.class);
 	AppConstants i18n = GWT.create(AppConstants.class);
@@ -50,7 +52,6 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 
 	@UiField TextBox rol_name;
 	@UiField Button submitButton;
-	@UiField Button deleteButton;
 	@UiField AppCellTable<Model> appCellTable;
 	
 	Column<Model, Number> rol_id_column;
@@ -63,6 +64,8 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		dateFormat = DateTimeFormat.getFormat("dd/MM/yyyy HH:mm:ss");
+		
+		appCellTable.addAppCellTableHandler(this);
 		
 		createCellTable();
 	}
@@ -145,15 +148,6 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 		presenter.doSave();
 		
 	}
-	
-	@UiHandler("deleteButton")
-	void deleteButtonClick(ClickEvent e) {
-		if(Window.confirm(i18n.common_areyousure())) {
-			Set<Model> selectedSet = appCellTable.selectionModel.getSelectedSet();
-		
-			presenter.doDelete(selectedSet);
-		}
-	}
 
 	public void setData(List<Model> data) {		
 		appCellTable.setData(data);
@@ -162,6 +156,20 @@ public class RoleViewImpl extends Composite implements CrudView, Editor<Role> {
 
 	public void setPresenter(Presenter presenter) {
 		this.presenter = (CrudPresenter) presenter;
+		
+	}
+
+	public void onDeleteButtonClicked() {
+		if(Window.confirm(i18n.common_areyousure())) {
+			Set<Model> selectedSet = appCellTable.selectionModel.getSelectedSet();
+		
+			presenter.doDelete(selectedSet);
+		}
+		
+	}
+
+	public void onAddNewButtonClicked() {
+		Window.alert("onAddNewButtonClicked");
 		
 	}
 
