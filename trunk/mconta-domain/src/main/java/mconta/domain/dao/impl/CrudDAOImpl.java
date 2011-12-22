@@ -5,6 +5,7 @@ package mconta.domain.dao.impl;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import mconta.domain.dao.CrudDAO;
 
@@ -20,6 +21,9 @@ import org.springframework.stereotype.Component;
 @Component("crudDAO")
 public class CrudDAOImpl<Type> 
 		extends HibernateDaoSupport implements CrudDAO<Type> {
+	
+	private static Logger logger =
+		    Logger.getLogger(CrudDAOImpl.class.getName());
 			
 	@Autowired
     public void init(SessionFactory factory) {
@@ -27,8 +31,8 @@ public class CrudDAOImpl<Type>
     }
     
 	public void saveOrUpdate(Type entity) throws Exception {
-		
-		
+		logger.severe("saveOrUpdate method called");
+		logger.info("saveOrUpdate method called");
 		getHibernateTemplate().saveOrUpdate(entity);
 		
 	}
