@@ -17,12 +17,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
  * @author Marc
  * 
  */
 @Entity
 @Table(name = "USER")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class User implements Model {
 
 	private static final long serialVersionUID = -5371370414590720273L;
