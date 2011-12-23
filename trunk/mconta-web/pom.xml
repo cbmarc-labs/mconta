@@ -68,7 +68,7 @@
     	<groupId>mconta</groupId>
     	<artifactId>mconta-domain</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<scope>compile</scope>
+		<scope>provided</scope>
 		<type>jar</type>
     	<classifier>sources</classifier>
     </dependency>
