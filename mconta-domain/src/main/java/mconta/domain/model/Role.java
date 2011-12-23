@@ -16,12 +16,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
  * @author Marc
  *
  */
 @Entity
 @Table(name = "ROLE")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Role implements Model {
 
 	private static final long serialVersionUID = -263600385164623117L;
