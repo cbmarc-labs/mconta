@@ -31,8 +31,6 @@ public class CrudDAOImpl<Type>
     }
     
 	public void saveOrUpdate(Type entity) throws Exception {
-		logger.severe("saveOrUpdate method called");
-		logger.info("saveOrUpdate method called");
 		getHibernateTemplate().saveOrUpdate(entity);
 		
 	}
