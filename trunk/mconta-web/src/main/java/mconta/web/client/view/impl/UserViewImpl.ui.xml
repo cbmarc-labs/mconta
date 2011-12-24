@@ -16,6 +16,9 @@
 		<g:TextBox ui:field="use_name"/>
 		<ui:text from="{i18n.form_label_use_password}" />
 		<g:TextBox ui:field="use_password" />
+		<ui:text from="{i18n.form_label_use_enabled}" />
+		<g:CheckBox ui:field="use_enabled"/>
+		
 		<ui:text from="{i18n.form_label_use_roles}" />
 		<c:ObjectListBox ui:field="use_roles"/>
 		

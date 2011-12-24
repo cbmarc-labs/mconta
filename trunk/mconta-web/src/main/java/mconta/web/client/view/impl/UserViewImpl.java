@@ -32,6 +32,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.TextBox;
@@ -55,6 +56,7 @@ public class UserViewImpl extends Composite
 
 	@UiField TextBox use_name;
 	@UiField TextBox use_password;
+	@UiField CheckBox use_enabled;
 	@UiField(provided=true) ObjectListBox<Role> use_roles;
 	@UiField Button submitButton;
 	@UiField AppCellTable<Model> appCellTable;
@@ -97,7 +99,6 @@ public class UserViewImpl extends Composite
 				
 			}};
 		appCellTable.cellTable.setColumnWidth(use_name_column, 20.0, Unit.EM);
-			
 		use_enabled_column = new Column<Model, Boolean>(
 				new CheckboxCell(true, false)){
 
@@ -203,6 +204,16 @@ public class UserViewImpl extends Composite
 	public void onAddNewButtonClicked() {
 		presenter.doNew();
 		use_roles.unselectAll();
+		
+	}
+
+	public Column<Model, Boolean> getUse_enabled_column() {
+		return use_enabled_column;
+		
+	}
+
+	public AppCellTable<Model> getAppCellTable() {
+		return appCellTable;
 		
 	}
 

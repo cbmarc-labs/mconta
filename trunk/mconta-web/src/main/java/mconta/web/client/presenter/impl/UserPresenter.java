@@ -17,12 +17,17 @@ import mconta.web.client.presenter.CrudPresenter;
 import mconta.web.client.rpc.AppAsyncCallback;
 import mconta.web.client.rpc.CrudService;
 import mconta.web.client.rpc.CrudServiceAsync;
+import mconta.web.client.ui.AppCellTable;
 import mconta.web.client.view.CrudView;
 import mconta.web.client.view.View;
 import mconta.web.client.view.impl.UserViewImpl;
 
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
+import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
@@ -34,6 +39,8 @@ public class UserPresenter implements CrudPresenter, RoleHandler {
 	public interface UserView extends CrudView {
 		
 		public void setRoleData(List<Model> list);
+		public Column<Model, Boolean> getUse_enabled_column();
+		public AppCellTable<Model> getAppCellTable();
 
 	}
 	
@@ -64,6 +71,26 @@ public class UserPresenter implements CrudPresenter, RoleHandler {
 	
 	public void bind() {
 		view.setPresenter(this);
+		
+		view.getUse_enabled_column().setFieldUpdater(
+				new FieldUpdater<Model, Boolean>(){
+
+			public void update(int index, Model object, Boolean value) {
+				((User)object).setUse_enabled(value);
+				
+				doUpdate(object);
+				
+			}});
+		
+	}
+	
+	public void doUpdate(Model object) {		
+		service.saveOrUpdate(object, new AppAsyncCallback<Void>(){
+
+			public void onSuccess(Void result) {
+				doLoad();
+				
+			}});
 		
 	}
 
