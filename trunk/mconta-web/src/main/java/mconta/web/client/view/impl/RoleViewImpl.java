@@ -169,7 +169,7 @@ public class RoleViewImpl extends Composite
 	}
 
 	public void onAddNewButtonClicked() {
-		Window.alert("onAddNewButtonClicked");
+		presenter.doNew();
 		
 	}
 

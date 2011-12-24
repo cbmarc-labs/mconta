@@ -15,6 +15,7 @@ public abstract interface CrudPresenter extends Presenter {
 
 	public void doLoad();
 	public void doSave();
+	public void doNew();
 	public void doDelete(Set<Model> selectedSet);
 	public void doEdit(Model model);
 	

@@ -5,12 +5,11 @@ package mconta.web.server;
 
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import mconta.domain.dao.CrudDAO;
 import mconta.domain.model.Model;
 import mconta.web.client.rpc.CrudService;
+import mconta.web.shared.ServerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,48 +20,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 @SuppressWarnings("serial")
 public class CrudServiceImpl
 	extends SpringRemoteServiceServlet implements CrudService {
-	
-	private static Logger logger =
-		    Logger.getLogger(CrudServiceImpl.class.getName());
 		
 	@Autowired
 	protected CrudDAO<Model> dao;
 
-	public void saveOrUpdate(Model model) throws Exception {
+	public void saveOrUpdate(Model model) throws ServerException {
 		try {
 			dao.saveOrUpdate(model);
 			
 		} catch(Exception e) {
-			throw new Exception(e);
+			// normally bad style but we need to throw again to inform the client
+			throw new ServerException(e);
 			
 		}
 		
 	}
 
-	public Model get(long id, String model) throws Exception {
+	public Model get(long id, String model) throws ServerException {
 		Model entity = null;
 		
 		try {
 			entity = dao.get(id, model);
 			
 		} catch(Exception e) {
-			throw new Exception(e);
+			throw new ServerException(e);
 		}
 			
 		return entity;
 		
 	}
 
-	public List<Model> getAll(String model) throws Exception {
+	public List<Model> getAll(String model) throws ServerException {
 		List<Model> list = null;
-		
-		logger.severe("--- severe logging message");
-		logger.info("--- info logging message");
-		logger.warning("--- warning logging message");
-		logger.config("--- config logging message");
-		logger.fine("--- fine logging message");
-		logger.finer("--- finer logging message");
-		logger.finest("--- finest logging message");
 		
 		try {
 			list = dao.getAll(model);
@@ -72,7 +61,7 @@ public class CrudServiceImpl
 			}
 			
 		} catch(Exception e) {
-			throw new Exception(e);
+			throw new ServerException(e);
 			
 		}
 		
@@ -80,12 +69,12 @@ public class CrudServiceImpl
 		
 	}
 
-	public void deleteAll(Set<Model> model) throws Exception {
+	public void deleteAll(Set<Model> model) throws ServerException {
 		try {
 			dao.deleteAll(model);
 			
 		} catch(Exception e) {
-			throw new Exception(e);
+			throw new ServerException(e);
 			
 		}
 		

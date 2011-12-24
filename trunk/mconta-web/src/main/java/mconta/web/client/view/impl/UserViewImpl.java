@@ -3,7 +3,6 @@
  */
 package mconta.web.client.view.impl;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -56,7 +55,7 @@ public class UserViewImpl extends Composite
 
 	@UiField TextBox use_name;
 	@UiField TextBox use_password;
-	@UiField(provided=true) ObjectListBox<Model> use_roles;
+	@UiField(provided=true) ObjectListBox<Role> use_roles;
 	@UiField Button submitButton;
 	@UiField AppCellTable<Model> appCellTable;
 	
@@ -68,7 +67,7 @@ public class UserViewImpl extends Composite
 	DateTimeFormat dateFormat;
 	
 	public UserViewImpl() {
-		use_roles = new ObjectListBox<Model>(true);
+		use_roles = new ObjectListBox<Role>(true);
 		use_roles.setVisibleItemCount(5);
 		
 		initWidget(uiBinder.createAndBindUi(this));
@@ -184,22 +183,12 @@ public class UserViewImpl extends Composite
 
 	public void setRoleData(List<Model> list) {		
 		use_roles.clear();
+		
 		for(Model role: list) {
-			use_roles.addItem(((Role)role).getRol_name(), role);
+			use_roles.addItem(((Role)role).getRol_name(), (Role)role);
+			
 		}
 		
-	}
-
-	public List<Role> getRoleData() {
-		List<Role> roles = new ArrayList<Role>();
-		
-		if(use_roles.getSelectedIndex() != -1) {
-			Role role = (Role) use_roles.getItem(use_roles.getSelectedIndex());
-		
-			roles.add(role);
-		}
-		
-		return roles;
 	}
 
 	public void onDeleteButtonClicked() {
@@ -212,7 +201,8 @@ public class UserViewImpl extends Composite
 	}
 
 	public void onAddNewButtonClicked() {
-		Window.alert("onAddNewButtonClicked");
+		presenter.doNew();
+		use_roles.unselectAll();
 		
 	}
 
