@@ -84,11 +84,10 @@ public class RolePresenter implements CrudPresenter, UserHandler {
 		service.saveOrUpdate(entity, new AppAsyncCallback<Void>(){
 
 			public void onSuccess(Void result) {
-				entity = new Role();
-				driver.edit(entity);
-				eventBus.fireEvent(new RoleEvent());
-				
+				doNew();				
 				doLoad();
+				
+				eventBus.fireEvent(new RoleEvent());
 				
 			}});
 	}
@@ -110,8 +109,14 @@ public class RolePresenter implements CrudPresenter, UserHandler {
 		
 	}
 
-	public void onEvent() {
+	public void onUserEvent() {
 		doLoad();
+		
+	}
+
+	public void doNew() {
+		entity = new Role();
+		driver.edit(entity);
 		
 	}
 

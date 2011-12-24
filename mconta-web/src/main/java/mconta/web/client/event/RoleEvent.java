@@ -6,7 +6,7 @@ import com.google.gwt.event.shared.GwtEvent;
 public class RoleEvent extends GwtEvent<RoleEvent.RoleHandler> {
 	
 	public interface RoleHandler extends EventHandler {
-		public void onEvent();
+		public void onRoleEvent();
 	}
 	
 	private static Type<RoleHandler> TYPE = new Type<RoleHandler>();
@@ -23,7 +23,7 @@ public class RoleEvent extends GwtEvent<RoleEvent.RoleHandler> {
 
 	@Override
 	protected void dispatch(RoleHandler handler) {
-		handler.onEvent();
+		handler.onRoleEvent();
 	}
 
 }

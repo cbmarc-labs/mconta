@@ -6,7 +6,7 @@ import com.google.gwt.event.shared.GwtEvent;
 public class UserEvent extends GwtEvent<UserEvent.UserHandler> {
 	
 	public interface UserHandler extends EventHandler {
-		public void onEvent();
+		public void onUserEvent();
 	}
 	
 	private static Type<UserHandler> TYPE = new Type<UserHandler>();
@@ -23,7 +23,7 @@ public class UserEvent extends GwtEvent<UserEvent.UserHandler> {
 
 	@Override
 	protected void dispatch(UserHandler handler) {
-		handler.onEvent();
+		handler.onUserEvent();
 	}
 
 }

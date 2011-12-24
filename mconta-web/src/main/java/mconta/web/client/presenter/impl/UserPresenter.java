@@ -34,7 +34,6 @@ public class UserPresenter implements CrudPresenter, RoleHandler {
 	public interface UserView extends CrudView {
 		
 		public void setRoleData(List<Model> list);
-		public List<Role> getRoleData();
 
 	}
 	
@@ -95,19 +94,21 @@ public class UserPresenter implements CrudPresenter, RoleHandler {
 
 	public void doSave() {
 		entity = driver.flush();
-		entity.setUse_roles(view.getRoleData());
 		
 		service.saveOrUpdate(entity, new AppAsyncCallback<Void>(){
 
 			public void onSuccess(Void result) {
-				entity = new User();
-				driver.edit(entity);
-				
+				doNew();
 				doLoad();
-				
 				eventBus.fireEvent(new UserEvent());
 				
 			}});
+	}
+	
+	public void doNew() {
+		entity = new User();
+		driver.edit(entity);
+		
 	}
 
 	public void doDelete(Set<Model> selectedSet) {		
@@ -123,12 +124,12 @@ public class UserPresenter implements CrudPresenter, RoleHandler {
 	}
 
 	public void doEdit(Model model) {
-		this.entity = (User) model;
+		entity = (User) model;		
 		driver.edit((User) model);
 		
 	}
 
-	public void onEvent() {
+	public void onRoleEvent() {
 		doLoad();
 		
 	}
