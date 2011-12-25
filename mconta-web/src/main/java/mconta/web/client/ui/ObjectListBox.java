@@ -19,10 +19,11 @@ public class ObjectListBox<T> extends ListBox
 		super(isMultipleSelect);
 	}
 	
-    public void addItem(final String item, final T obj) {
+    public void addItem(final String item, T obj) {
         if(items == null) {
             items = new ArrayList<T>();
         }
+        
         
         items.add(obj);
         addItem(item, item);
@@ -65,6 +66,8 @@ public class ObjectListBox<T> extends ListBox
 			
 		}
 	}
+	
+	
 
 	public List<T> getValue() {
 		List<T> values = new ArrayList<T>();

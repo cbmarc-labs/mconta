@@ -35,6 +35,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.CellPreviewEvent;
@@ -55,7 +56,7 @@ public class UserViewImpl extends Composite
 	interface MainUiBinder extends UiBinder<Widget, UserViewImpl> {}
 
 	@UiField TextBox use_name;
-	@UiField TextBox use_password;
+	@UiField PasswordTextBox use_password;
 	@UiField CheckBox use_enabled;
 	@UiField(provided=true) ObjectListBox<Role> use_roles;
 	@UiField Button submitButton;
@@ -89,7 +90,7 @@ public class UserViewImpl extends Composite
 				return ((User) object).getUse_id();
 				
 			}};
-		appCellTable.cellTable.setColumnWidth(use_id_column, 6.0, Unit.EM);
+		appCellTable.cellTable.setColumnWidth(use_id_column, 3.0, Unit.EM);
 		
 		use_name_column = new Column<Model, String>(new TextCell()) {
 			
@@ -98,7 +99,7 @@ public class UserViewImpl extends Composite
 				return ((User) object).getUse_name();
 				
 			}};
-		appCellTable.cellTable.setColumnWidth(use_name_column, 20.0, Unit.EM);
+		appCellTable.cellTable.setColumnWidth(use_name_column, 10.0, Unit.EM);
 		use_enabled_column = new Column<Model, Boolean>(
 				new CheckboxCell(true, false)){
 
