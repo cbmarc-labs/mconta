@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * @author Marc
@@ -36,10 +37,12 @@ public class User implements Model {
 	@Column(name = "USE_ID", nullable = false)
 	protected Long use_id;
 
-	@Column(name = "USE_NAME", nullable = false, length = 25)
+	@Column(name = "USE_NAME", nullable = false)
+	@Length(min=4, max=25)
 	protected String use_name;
 
-	@Column(name = "USE_PASSWORD", nullable = false, length = 25)
+	@Column(name = "USE_PASSWORD", nullable = false)
+	@Length(min=4, max=25)
 	protected String use_password;
 
 	@Column(name = "USE_ENABLED", length = 1)
