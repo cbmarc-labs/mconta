@@ -8,7 +8,7 @@ import mconta.domain.model.Model;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("crudService")
+@RemoteServiceRelativePath("crud.rpc")
 public interface CrudService extends RemoteService {
 	
 	public void saveOrUpdate(Model model) throws Exception;
