@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import mconta.web.shared.UserDTO;
+import mconta.web.shared.UserDto;
 
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -40,15 +40,15 @@ public class SpringRemoteServiceServlet extends RemoteServiceServlet {
 	}
 	
 	protected void checkLoggedIn() throws Exception {
-		UserDTO user = getUserSession();
+		/*UserDto user = getUserSession();
 		
 		if (user.getLoggedIn() == false) {
 	    	throw new Exception("Not logged in.");
 	    	
-	    }
+	    }*/
 	}
 	
-	protected void setUserSession(UserDTO user) {
+	protected void setUserSession(UserDto user) {
 		if(user == null)
 			getSession().removeAttribute("user");
 		else
@@ -56,8 +56,8 @@ public class SpringRemoteServiceServlet extends RemoteServiceServlet {
 		
 	}
 	
-	protected UserDTO getUserSession() {
-		return (UserDTO) getSession().getAttribute("user");
+	protected UserDto getUserSession() {
+		return (UserDto) getSession().getAttribute("user");
 	}
 	
 }
