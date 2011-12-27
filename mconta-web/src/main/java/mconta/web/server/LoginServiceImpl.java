@@ -3,10 +3,9 @@
  */
 package mconta.web.server;
 
-import java.util.Date;
-
-import mconta.web.client.rpc.LoginService;
-import mconta.web.shared.UserDTO;
+import mconta.web.client.login.rpc.LoginService;
+import mconta.web.shared.ServerException;
+import mconta.web.shared.UserDto;
 
 /**
  * @author Marc
@@ -16,12 +15,10 @@ import mconta.web.shared.UserDTO;
 public class LoginServiceImpl 
 	extends SpringRemoteServiceServlet implements LoginService {
 
-	public UserDTO login(String username, String password) throws Exception {
-		UserDTO user = new UserDTO();
+	public UserDto login(String username, String password) throws ServerException {
+		UserDto user = new UserDto();
 		
-		user.setUsername(username);
-		user.setLoggedIn(true);
-		user.setLoggedInOn(new Date());
+		user.setName(username);
 		
 		setUserSession(user);
 		
@@ -29,7 +26,7 @@ public class LoginServiceImpl
 		
 	}
 
-	public void logout() throws Exception {
+	public void logout() throws ServerException {
 		setUserSession(null);
 		
 	}
