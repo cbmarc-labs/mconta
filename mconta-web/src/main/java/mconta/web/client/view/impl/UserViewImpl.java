@@ -172,6 +172,17 @@ public class UserViewImpl extends Composite
 		presenter.doSave();
 		
 	}
+	
+	/*@UiHandler("submitButton")
+	void onKeyPress(KeyUpEvent e) {
+		if (e.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+			Window.alert("YES");
+		}
+	}*/
+	
+	public void validate() {
+		
+	}
 
 	public void setData(List<Model> data) {		
 		appCellTable.setData(data);
