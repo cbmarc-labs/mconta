@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module rename-to='mconta'>
+<module rename-to='login'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User' />
-
-  <!-- We need the JUnit module in the main module,               -->
-  <!-- otherwise eclipse complains (Google plugin bug?)           -->
-  <!-- <inherits name='com.google.gwt.junit.JUnit' /> -->
   
   <set-property name="user.agent" value="safari" />
-
-  <!-- Inherit the default GWT style sheet.  You can change       -->
-  <!-- the theme of your GWT application by uncommenting          -->
-  <!-- any one of the following lines.                            -->
-  <!-- <inherits name='com.google.gwt.user.theme.standard.Standard' /> -->
-  <inherits name='com.google.gwt.user.theme.chrome.Chrome'/>
-  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+  
+  <inherits name='com.google.gwt.user.theme.standard.Standard' />
   
   <!-- I18N -->
   <inherits name="com.google.gwt.i18n.I18N" />
@@ -40,7 +31,7 @@
   <inherits name='mconta.domain.Domain' />
 
   <!-- Specify the app entry point class.                         -->
-  <entry-point class='mconta.web.client.Mconta' />
+  <entry-point class='mconta.web.client.login.Login' />
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client' />
