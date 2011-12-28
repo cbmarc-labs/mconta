@@ -99,7 +99,7 @@
         <!-- Plugin configuration. There are many available options, see 
           gwt-maven-plugin documentation at codehaus.org -->
         <configuration>
-          <runTarget>Mconta.html</runTarget>
+          <runTarget>mconta.html</runTarget>
           <hostedWebapp>${webappDirectory}</hostedWebapp>
           <i18nMessagesBundles>
           	<i18nMessagesBundle>mconta.web.client.i18n.AppConstants</i18nMessagesBundle>
