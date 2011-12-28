@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import mconta.web.shared.UserDto;
+import mconta.web.shared.dto.UserDto;
 
 import org.springframework.web.context.support.WebApplicationContextUtils;
 

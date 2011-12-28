@@ -10,7 +10,6 @@ import java.util.Set;
 import mconta.domain.model.Model;
 import mconta.domain.model.Role;
 import mconta.domain.model.User;
-import mconta.web.client.i18n.AppConstants;
 import mconta.web.client.mconta.event.AppCellTableEvent.AppCellTableHandler;
 import mconta.web.client.mconta.presenter.CrudPresenter;
 import mconta.web.client.mconta.presenter.Presenter;

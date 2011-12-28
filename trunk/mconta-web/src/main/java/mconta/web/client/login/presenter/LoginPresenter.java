@@ -6,7 +6,7 @@ package mconta.web.client.login.presenter;
 import mconta.web.client.login.rpc.LoginService;
 import mconta.web.client.login.rpc.LoginServiceAsync;
 import mconta.web.client.login.view.View;
-import mconta.web.shared.UserDto;
+import mconta.web.shared.dto.UserDto;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
