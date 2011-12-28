@@ -14,18 +14,28 @@
 
   <!-- Servlets -->
   <servlet>
+    <servlet-name>loginService</servlet-name>
+    <servlet-class>mconta.web.server.LoginServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>loginService</servlet-name>
+    <url-pattern>/mconta/login.rpc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>crudService</servlet-name>
     <servlet-class>mconta.web.server.CrudServiceImpl</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>crudService</servlet-name>
-    <url-pattern>/Mconta/crudService</url-pattern>
+    <url-pattern>/mconta/crud.rpc</url-pattern>
   </servlet-mapping>
 
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>Mconta.html</welcome-file>
+    <welcome-file>mconta.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
