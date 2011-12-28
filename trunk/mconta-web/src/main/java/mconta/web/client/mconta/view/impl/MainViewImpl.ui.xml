@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:with field="i18n" type="mconta.web.client.i18n.AppConstants" />
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.panel {
+			margin:25px;
+			padding: 25px;
+			border:1px solid #aaa;
+
+		}
+	</ui:style>
+	
+	<g:HTMLPanel>
+	
+		<g:Label text="{i18n.section_users}"/>
+		<g:HTMLPanel ui:field="userpanel" styleName="{style.panel}"></g:HTMLPanel>
+		<g:Label text="{i18n.section_roles}"/>
+		<g:HTMLPanel ui:field="rolepanel" styleName="{style.panel}"></g:HTMLPanel>
+		
+	</g:HTMLPanel>
+	
+</ui:UiBinder> 
