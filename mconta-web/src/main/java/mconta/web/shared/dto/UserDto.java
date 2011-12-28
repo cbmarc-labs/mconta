@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mconta.web.shared;
+package mconta.web.shared.dto;
 
 import java.io.Serializable;
 import java.util.Date;

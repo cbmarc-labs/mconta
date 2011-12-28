@@ -3,7 +3,7 @@
  */
 package mconta.web.client.login.rpc;
 
-import mconta.web.shared.UserDto;
+import mconta.web.shared.dto.UserDto;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 

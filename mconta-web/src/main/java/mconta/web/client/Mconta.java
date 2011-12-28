@@ -6,7 +6,7 @@ import mconta.web.client.login.rpc.LoginServiceAsync;
 import mconta.web.client.login.view.impl.LoginViewImpl;
 import mconta.web.client.mconta.presenter.impl.MainPresenter;
 import mconta.web.client.mconta.view.impl.MainViewImpl;
-import mconta.web.shared.UserDto;
+import mconta.web.shared.dto.UserDto;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;

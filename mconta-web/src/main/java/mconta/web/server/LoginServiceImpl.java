@@ -5,7 +5,7 @@ package mconta.web.server;
 
 import mconta.web.client.login.rpc.LoginService;
 import mconta.web.shared.ServerException;
-import mconta.web.shared.UserDto;
+import mconta.web.shared.dto.UserDto;
 
 /**
  * @author Marc
@@ -18,17 +18,22 @@ public class LoginServiceImpl
 	public UserDto login(String username, String password) throws ServerException {
 		UserDto user = new UserDto();
 		
-		user.setName(username);
+		user.setUsername(username);
 		
-		setUserSession(user);
+		//setUserSession(user);
 		
 		return user;
 		
 	}
 
 	public void logout() throws ServerException {
-		setUserSession(null);
+		//setUserSession(null);
 		
+	}
+
+	public UserDto isAuthenticated() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
