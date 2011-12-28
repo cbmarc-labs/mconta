@@ -3,6 +3,8 @@
  */
 package mconta.web.client.login.view.impl;
 
+import mconta.web.client.login.presenter.LoginPresenter.LoginView;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -18,7 +20,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Marc
  *
  */
-public class LoginViewImpl extends Composite {
+public class LoginViewImpl extends Composite implements LoginView {
 	private static LoginViewUiBinder uiBinder = GWT
 			.create(LoginViewUiBinder.class);
 
