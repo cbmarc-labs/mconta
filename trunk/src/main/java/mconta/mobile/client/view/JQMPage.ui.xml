@@ -1,0 +1,12 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+
+    <div data-role="page" ui:field="page">
+	
+		<div data-role="header"><h1>Header</h1></div>
+		<div data-role="content" ui:field="jqmpagecontent"></div>
+		<div data-role="footer"><h1>Footer</h1></div>
+			
+	</div>
+
+</ui:UiBinder>
