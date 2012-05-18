@@ -20,7 +20,7 @@
 
   <servlet-mapping>
     <servlet-name>loginService</servlet-name>
-    <url-pattern>/mconta/login.rpc</url-pattern>
+    <url-pattern>/app/login.rpc</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -30,12 +30,12 @@
 
   <servlet-mapping>
     <servlet-name>crudService</servlet-name>
-    <url-pattern>/mconta/crud.rpc</url-pattern>
+    <url-pattern>/app/crud.rpc</url-pattern>
   </servlet-mapping>
 
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>mconta.html</welcome-file>
+    <welcome-file>app.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
