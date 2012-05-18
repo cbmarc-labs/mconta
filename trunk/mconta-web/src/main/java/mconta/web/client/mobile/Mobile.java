@@ -1,5 +1,6 @@
 package mconta.web.client.mobile;
 
+import mconta.web.client.mobile.view.EditViewImpl;
 import mconta.web.client.mobile.view.JQMPage;
 import mconta.web.client.mobile.view.LoginViewImpl;
 import mconta.web.client.mobile.view.PopUpViewImpl;
@@ -15,6 +16,7 @@ public class Mobile implements EntryPoint {
 		Document.get().getBody().appendChild(new JQMPage().getElement()); 
 		Document.get().getBody().appendChild(new LoginViewImpl().getElement());
 		Document.get().getBody().appendChild(new PopUpViewImpl().getElement());
+		Document.get().getBody().appendChild(new EditViewImpl().getElement());
 		
 		jqmInit();
 	}
