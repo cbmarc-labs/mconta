@@ -10,7 +10,12 @@
 			<a href="JavaScript:compute('test');" data-role="button" data-icon="star">Send to server</a>
 			
 			<ul data-role="listview" data-inset="true">
-			    <li><a href="#"><img src="img/album-p.jpg" /><h3>Broken Bells</h3><p>Broken Bells</p></a><span class="ui-li-count">1</span></li>
+			    <li>
+			        <a href="#edit">
+			            <img src="img/album-p.jpg" /><h3>Broken Bells</h3><p>Broken Bells</p>
+			        </a>
+			        <span class="ui-li-count">1</span>
+			    </li>
 				<li><a href="#"><img src="img/album-hc.jpg" /><h3>Warning</h3><p>Hot Chip</p></a><span class="ui-li-count">6</span></li>
 				<li><a href="#"><img src="img/album-bb.jpg" /><h3>Wolfgang Amadeus Phoenix</h3><p>Phoenix</p></a><span class="ui-li-count">3</span></li>
 			</ul>
