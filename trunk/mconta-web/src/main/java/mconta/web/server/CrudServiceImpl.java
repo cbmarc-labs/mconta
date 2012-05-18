@@ -8,7 +8,7 @@ import java.util.Set;
 
 import mconta.domain.dao.CrudDAO;
 import mconta.domain.model.Model;
-import mconta.web.client.mconta.rpc.CrudService;
+import mconta.web.client.app.rpc.CrudService;
 import mconta.web.shared.ServerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +77,14 @@ public class CrudServiceImpl
 			throw new ServerException(e);
 			
 		}
+		
+	}
+
+	@Override
+	public String test(String data) throws Exception {
+		//this.saveOrUpdate(new User(data, data, false, null));
+		
+		return "All ok !!!";
 		
 	}
 }
