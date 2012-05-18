@@ -88,6 +88,9 @@
         <version>2.4.0</version>
         <executions>
           <execution>
+            <configuration>
+              <!-- <module>mconta.web.client.mobile.Mobile</module> -->
+            </configuration>
             <goals>
               <goal>compile</goal>
               <!-- <goal>test</goal> -->
@@ -99,7 +102,7 @@
         <!-- Plugin configuration. There are many available options, see 
           gwt-maven-plugin documentation at codehaus.org -->
         <configuration>
-          <runTarget>mconta.html</runTarget>
+          <runTarget>app.html</runTarget>
           <hostedWebapp>${webappDirectory}</hostedWebapp>
           <i18nMessagesBundles>
           	<i18nMessagesBundle>mconta.web.client.i18n.AppConstants</i18nMessagesBundle>
@@ -124,15 +127,16 @@
           <webappDirectory>${webappDirectory}</webappDirectory>
         </configuration>
       </plugin>
+      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>1.6</source>
+          <target>1.6</target>
         </configuration>
-      </plugin>
+      </plugin>      
     </plugins>
     <pluginManagement>
     	<plugins>
