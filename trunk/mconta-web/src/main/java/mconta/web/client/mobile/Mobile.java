@@ -1,50 +1,58 @@
 package mconta.web.client.mobile;
 
-import mconta.web.client.mobile.view.EditViewImpl;
-import mconta.web.client.mobile.view.JQMPage;
-import mconta.web.client.mobile.view.LoginViewImpl;
-import mconta.web.client.mobile.view.PopUpViewImpl;
+import mconta.web.client.mobile.event.MessageHandler;
+import mconta.web.client.mobile.view.EditProductViewImpl;
+import mconta.web.client.mobile.view.ListProductsViewImpl;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.Widget;
 
+/**
+ * Mobile is the main mobile program
+ * 
+ * @author marc
+ */
 public class Mobile implements EntryPoint {
-
-	public void onModuleLoad() {
-		setShowTrigger(this);
+	
+	ListProductsViewImpl listProducts = new ListProductsViewImpl();
+	Widget editProduct = new EditProductViewImpl();
+	
+	/**
+	 * onModuleLoad()
+	 */
+	public void onModuleLoad() {		
+		RootPanel.get().add(listProducts);
+		RootPanel.get().add(editProduct);
 		
-		Document.get().getBody().appendChild(new JQMPage().getElement()); 
-		Document.get().getBody().appendChild(new LoginViewImpl().getElement());
-		Document.get().getBody().appendChild(new PopUpViewImpl().getElement());
-		Document.get().getBody().appendChild(new EditViewImpl().getElement());
+		String location = Window.Location.getHash();
+		if(location.isEmpty())
+			location = listProducts.getElement().getId();
 		
-		jqmInit();
+		JQMChangePage(location);
+		
+		bind();
 	}
 	
-	public static native void errorAlert(String msg) /*-{
-		
-		$doc.getElementById("popupviewimpltext").innerHTML = msg;
-		$wnd.$.mobile.changePage('#popupviewimpl');
-	  
-	}-*/;
-	
-	public void compute(String data) {
+	public void bind() {
+		listProducts.addClickHandler(new MessageHandler(){
 
-		errorAlert(data);
-
+			@Override
+			public void onClick(String msg) {
+				JQMChangePage(editProduct.getElement().getId());
+				
+			}});
 	}
 	
-	public native void setShowTrigger(Mobile x)/*-{
+	/**
+	 * jqmChangePage() is the native method for change page in jQuery Mobile
+	 * 
+	 * @param page
+	 */
+	native void JQMChangePage(String page) /*-{
 		
-		$wnd.compute = function (data) {
-			x.@mconta.web.client.mobile.Mobile::compute(Ljava/lang/String;)(data);
-		};
-
-	}-*/;
-	
-	native void jqmInit() /*-{
-		
-		$wnd.$.mobile.changePage("#page1", "pop", false, true);
+		$wnd.$.mobile.changePage("#" + page, "pop", false, true);
 		
 	}-*/;
   

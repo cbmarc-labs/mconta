@@ -17,15 +17,27 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
+ * LoginViewImpl class
+ * 
  * @author Marc
- *
  */
 public class LoginViewImpl extends Composite implements LoginView {
+	
+	/**
+	 * LoginViewUiBinder
+	 * 
+	 * @author marc
+	 */
 	private static LoginViewUiBinder uiBinder = GWT
 			.create(LoginViewUiBinder.class);
 
-	interface LoginViewUiBinder extends UiBinder<Widget, LoginViewImpl> {
-	}
+	/**
+	 * LoginViewUiBinder
+	 * 
+	 * @author marc
+	 *
+	 */
+	interface LoginViewUiBinder extends UiBinder<Widget, LoginViewImpl> {}
 
 	@UiField TextBox email;
 	@UiField PasswordTextBox password;

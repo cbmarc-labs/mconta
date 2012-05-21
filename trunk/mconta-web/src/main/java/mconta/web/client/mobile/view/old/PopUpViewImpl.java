@@ -1,4 +1,4 @@
-package mconta.web.client.mobile.view;
+package mconta.web.client.mobile.view.old;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;

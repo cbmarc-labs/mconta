@@ -3,10 +3,10 @@
  */
 package mconta.web.client.app.presenter.impl;
 
-import mconta.web.client.app.presenter.Presenter;
 import mconta.web.client.app.view.View;
 import mconta.web.client.app.view.impl.RoleViewImpl;
 import mconta.web.client.app.view.impl.UserViewImpl;
+import mconta.web.client.common.presenter.Presenter;
 
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
