@@ -6,6 +6,7 @@ package mconta.web.client.app.presenter;
 import java.util.Set;
 
 import mconta.domain.model.Model;
+import mconta.web.client.common.presenter.Presenter;
 
 /**
  * @author Marc

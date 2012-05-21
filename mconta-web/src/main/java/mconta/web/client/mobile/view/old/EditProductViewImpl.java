@@ -1,4 +1,4 @@
-package mconta.web.client.mobile.view;
+package mconta.web.client.mobile.view.old;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
@@ -7,23 +7,24 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.UIObject;
 
-public class JQMPage extends UIObject {
+/**
+ * EditProductViewImpl class
+ * 
+ * @author marc
+ */
+public class EditProductViewImpl extends UIObject {
 
-	private static JQMPageUiBinder uiBinder = GWT.create(JQMPageUiBinder.class);
-
-	interface JQMPageUiBinder extends UiBinder<Element, JQMPage> {
-	}
+	private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
+	interface MyUiBinder extends UiBinder<Element, EditProductViewImpl> {}
 	
-	static String pageid = "page1";
+	static String pageid = "editproduct";
 	
 	@UiField DivElement page;
-	@UiField DivElement jqmpagecontent;
 
-	public JQMPage() {
+	public EditProductViewImpl() {
 		setElement(uiBinder.createAndBindUi(this));
 		
 		page.setId(pageid);
-		jqmpagecontent.setInnerHTML("<a href=\"#page2\" data-role=\"button\" data-icon=\"star\">Star button</a>");
 		
 		jqmInit(pageid);
 	}

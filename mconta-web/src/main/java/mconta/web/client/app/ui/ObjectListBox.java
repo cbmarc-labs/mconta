@@ -6,19 +6,43 @@ import java.util.List;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.user.client.ui.ListBox;
 
+/**
+ * ObjectListBox class
+ * 
+ * @author marc
+ *
+ * @param <T>
+ */
 public class ObjectListBox<T> extends ListBox 
 		implements LeafValueEditor<List<T>> {
 	
+	/**
+	 * items
+	 */
 	private List<T> items = null;
 	
+	/**
+	 * Constructor
+	 */
 	public ObjectListBox() {
 		super();
 	}
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param isMultipleSelect
+	 */
 	public ObjectListBox(boolean isMultipleSelect) {
 		super(isMultipleSelect);
 	}
 	
+	/**
+	 * addItem
+	 * 
+	 * @param item
+	 * @param obj
+	 */
     public void addItem(final String item, T obj) {
         if(items == null) {
             items = new ArrayList<T>();
@@ -29,10 +53,19 @@ public class ObjectListBox<T> extends ListBox
         addItem(item, item);
     }
     
+    /**
+     * getItem
+     * 
+     * @param index
+     * @return
+     */
     public T getItem(final int index) {
         return items.get(index);
     }
 
+    /**
+     * clear
+     */
 	@Override
 	public void clear() {
 		if(items != null)
@@ -42,6 +75,9 @@ public class ObjectListBox<T> extends ListBox
 		super.clear();
 	}
 	
+	/**
+	 * unselecAll
+	 */
 	public void unselectAll() {
 		for(int i = 0 ; i < items.size() ; i ++) {
 				setItemSelected(i, false);
@@ -50,6 +86,11 @@ public class ObjectListBox<T> extends ListBox
 		
 	}
 
+	/**
+	 * setValue
+	 * 
+	 * @param values
+	 */
 	public void setValue(List<T> values) {
 		if(values == null) {
 			return;
@@ -67,8 +108,11 @@ public class ObjectListBox<T> extends ListBox
 		}
 	}
 	
-	
-
+	/**
+	 * getValue
+	 * 
+	 * @return values
+	 */
 	public List<T> getValue() {
 		List<T> values = new ArrayList<T>();
 		

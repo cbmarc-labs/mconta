@@ -18,13 +18,24 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
+ * LoginPresenter class
+ * 
  * @author Marc
- *
  */
 public class LoginPresenter {
 	
+	/**
+	 * LoginView interface
+	 * 
+	 * @author marc
+	 */
 	public interface LoginView extends View {
 	
+		/**
+		 * getSubmitButton()
+		 * 
+		 * @return
+		 */
 		public Button getSubmitButton();
 	
 	}
@@ -34,6 +45,12 @@ public class LoginPresenter {
 	
 	private final LoginView view;
 	
+	/**
+	 * LoginPresenter()
+	 * 
+	 * @param view
+	 * @author marc
+	 */
 	public LoginPresenter(View view) {
 		this.view = (LoginView) view;
 		
@@ -41,6 +58,11 @@ public class LoginPresenter {
 		
 	}
 	
+	/**
+	 * bind()
+	 * 
+	 * @author marc
+	 */
 	public void bind() {
 		view.getSubmitButton().addClickHandler(new ClickHandler(){
 
@@ -50,6 +72,11 @@ public class LoginPresenter {
 			}});
 	}
 
+	/**
+	 * onSubmitButtonClicked()
+	 * 
+	 * @author marc
+	 */
 	protected void onSubmitButtonClicked() {
 		loginService.login("admin", "admin", new AsyncCallback<UserDto>(){
 
@@ -65,6 +92,12 @@ public class LoginPresenter {
 		
 	}
 
+	/**
+	 * go()
+	 * 
+	 * @param container
+	 * @author marc
+	 */
 	public void go(HasWidgets container) {
 		container.clear();
 		container.add(view.asWidget());

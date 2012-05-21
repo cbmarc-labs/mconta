@@ -12,10 +12,10 @@ import mconta.domain.model.Role;
 import mconta.domain.model.User;
 import mconta.web.client.app.event.AppCellTableEvent.AppCellTableHandler;
 import mconta.web.client.app.presenter.CrudPresenter;
-import mconta.web.client.app.presenter.Presenter;
 import mconta.web.client.app.presenter.impl.UserPresenter.UserView;
 import mconta.web.client.app.ui.AppCellTable;
 import mconta.web.client.app.ui.ObjectListBox;
+import mconta.web.client.common.presenter.Presenter;
 import mconta.web.client.i18n.AppConstants;
 
 import com.google.gwt.cell.client.CheckboxCell;
@@ -184,7 +184,7 @@ public class UserViewImpl extends Composite
 		
 	}
 
-	public void setData(List<Model> data) {		
+	public void setData(List<Model> data) {
 		appCellTable.setData(data);
 		
 	}
