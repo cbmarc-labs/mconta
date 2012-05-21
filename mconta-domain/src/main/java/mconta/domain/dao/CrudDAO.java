@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * CrudDAO interface
+ * 
  * @author Marc
- *
  */
 public interface CrudDAO<Type> {
 	
