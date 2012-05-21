@@ -9,14 +9,39 @@ import org.mortbay.jetty.nio.SelectChannelConnector;
 import org.mortbay.jetty.webapp.WebAppContext;
 import org.mortbay.thread.QueuedThreadPool;
 
+/**
+ * Main is the main program class.
+ * 
+ * @author marc
+ *
+ */
 public class Main extends JFrame {
     
+	/**
+	 * serialVersionUID is the serial version
+	 */
 	private static final long serialVersionUID = 1L;
-	private static Server server;
-	private static Integer JETTY_PORT = 8080;
-	private static String MCONTA_MODULE_CONTEXT = "mconta";
-	private static String MOBILE_MODULE_CONTEXT = "mobile";
 	
+	/**
+	 * server is the Jetty web server
+	 */
+	private static Server server;
+	
+	/**
+	 * JETTY_PORT is the port of the Jetty server
+	 */
+	private static Integer JETTY_PORT = 8080;
+	
+	/**
+	 * APP_MODULE_CONTEXT is the context of the application
+	 */
+	private static String APP_MODULE_CONTEXT = "mconta";
+	
+	/**
+	 * Main() is the main application
+	 * 
+	 * @author marc
+	 */
 	public Main() {		
 		setTitle("MCONTA");
 		setSize(600, 400);
@@ -24,6 +49,12 @@ public class Main extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * main() is the main application 
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main( String[] args ) throws Exception {
 		
 		server = new Server(JETTY_PORT);
@@ -40,13 +71,8 @@ public class Main extends JFrame {
 		
 		WebAppContext mcontaApp = new WebAppContext();
 		mcontaApp.setWar("../mconta-web/target/mconta-web-0.0.1-SNAPSHOT.war");
-		mcontaApp.setContextPath("/" + MCONTA_MODULE_CONTEXT);
+		mcontaApp.setContextPath("/" + APP_MODULE_CONTEXT);
 		server.addHandler(mcontaApp);
-
-		WebAppContext mobileApp = new WebAppContext();
-		mobileApp.setWar("../mconta-mobile/target/mconta-mobile-0.0.1-SNAPSHOT.war");
-		mobileApp.setContextPath("/" + MOBILE_MODULE_CONTEXT);
-		server.addHandler(mobileApp);
 				
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -64,4 +90,5 @@ public class Main extends JFrame {
 		server.setSendServerVersion(true);
 		server.join();
     }
+	
 }
