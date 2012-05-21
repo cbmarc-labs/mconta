@@ -20,8 +20,9 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
+ * Role class
+ * 
  * @author Marc
- *
  */
 @Entity
 @Table(name = "ROLE")
