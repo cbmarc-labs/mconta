@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mconta.web.client.app.rpc;
+package mconta.web.client.common.rpc;
 
 import java.util.List;
 import java.util.Set;

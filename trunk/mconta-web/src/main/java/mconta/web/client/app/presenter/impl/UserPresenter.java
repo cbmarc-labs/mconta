@@ -15,12 +15,12 @@ import mconta.web.client.app.event.RoleEvent.RoleHandler;
 import mconta.web.client.app.event.UserEvent;
 import mconta.web.client.app.presenter.CrudPresenter;
 import mconta.web.client.app.rpc.AppAsyncCallback;
-import mconta.web.client.app.rpc.CrudService;
-import mconta.web.client.app.rpc.CrudServiceAsync;
 import mconta.web.client.app.ui.AppCellTable;
 import mconta.web.client.app.view.CrudView;
 import mconta.web.client.app.view.View;
 import mconta.web.client.app.view.impl.UserViewImpl;
+import mconta.web.client.common.rpc.CrudService;
+import mconta.web.client.common.rpc.CrudServiceAsync;
 
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
