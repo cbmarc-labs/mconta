@@ -40,6 +40,7 @@
   <modules>
   	<module>../mconta-domain</module>
   	<module>../mconta-web</module>
-  	<!-- <module>../mconta-client</module> -->
+  	<module>../mconta-client</module>
+  	<module>../mconta-android</module>
   </modules>
 </project>
