@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello mconta-android!</string>
     <string name="app_name">mconta-android</string>
+    <string name="app_url">http://</string>
 </resources>
