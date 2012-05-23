@@ -8,7 +8,7 @@ import java.util.Set;
 
 import mconta.domain.dao.CrudDAO;
 import mconta.domain.model.Model;
-import mconta.web.client.app.rpc.CrudService;
+import mconta.web.client.common.rpc.CrudService;
 import mconta.web.shared.ServerException;
 
 import org.springframework.beans.factory.annotation.Autowired;

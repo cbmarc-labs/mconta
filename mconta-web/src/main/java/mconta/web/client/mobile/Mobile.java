@@ -1,48 +1,36 @@
 package mconta.web.client.mobile;
 
-import mconta.web.client.mobile.event.MessageHandler;
-import mconta.web.client.mobile.view.EditProductViewImpl;
+import mconta.web.client.common.event.EventBus;
+import mconta.web.client.mobile.event.ChangePageEvent;
+import mconta.web.client.mobile.event.ChangePageHandler;
 import mconta.web.client.mobile.view.ListProductsViewImpl;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Mobile is the main mobile program
  * 
  * @author marc
  */
-public class Mobile implements EntryPoint {
+public class Mobile implements EntryPoint, ChangePageHandler {
 	
 	ListProductsViewImpl listProducts = new ListProductsViewImpl();
-	Widget editProduct = new EditProductViewImpl();
 	
 	/**
 	 * onModuleLoad()
 	 */
-	public void onModuleLoad() {		
+	public void onModuleLoad() {
+		EventBus.getEventBus().addHandler(ChangePageEvent.getType(), this);
+		
 		RootPanel.get().add(listProducts);
-		RootPanel.get().add(editProduct);
-		
-		String location = Window.Location.getHash();
-		if(location.isEmpty())
-			location = listProducts.getElement().getId();
-		
-		JQMChangePage(location);
-		
-		bind();
+		listProducts.go();
 	}
-	
-	public void bind() {
-		listProducts.addClickHandler(new MessageHandler(){
 
-			@Override
-			public void onClick(String msg) {
-				JQMChangePage(editProduct.getElement().getId());
-				
-			}});
+	@Override
+	public void onChangePage(String page) {
+		JQMChangePage(page);
+		
 	}
 	
 	/**
