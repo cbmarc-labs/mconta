@@ -42,6 +42,9 @@ public class Product implements Model {
 	@Length(min=4, max=100)
 	protected String pro_description;
 
+	@Column(name = "PRO_QUANTITY")
+	protected Integer pro_quantity;
+
 	@Column(name = "PRO_IMAGE")
 	@Length(max=100)
 	protected String pro_image;
@@ -49,9 +52,17 @@ public class Product implements Model {
 	public Product() {
 	}
 
-	public Product(String pro_name, String pro_description) {
+	public Product(Long pro_id, String pro_name, String pro_description, String pro_image) {
+		this.pro_id = pro_id;
 		this.pro_name = pro_name;
 		this.pro_description = pro_description;
+		this.pro_image = pro_image;
+	}
+	
+	public Product(String pro_name, String pro_description, String pro_image) {
+		this.pro_name = pro_name;
+		this.pro_description = pro_description;
+		this.pro_image = pro_image;
 	}
 	
 	/**
@@ -94,6 +105,20 @@ public class Product implements Model {
 	 */
 	public void setPro_description(String pro_description) {
 		this.pro_description = pro_description;
+	}
+
+	/**
+	 * @return the pro_quantity
+	 */
+	public Integer getPro_quantity() {
+		return pro_quantity;
+	}
+
+	/**
+	 * @param pro_quantity the pro_quantity to set
+	 */
+	public void setPro_quantity(Integer pro_quantity) {
+		this.pro_quantity = pro_quantity;
 	}
 
 	/**
