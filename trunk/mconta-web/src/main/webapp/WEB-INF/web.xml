@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app
-    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-    "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
 
@@ -13,6 +10,7 @@
   	</listener>
 
   <!-- Servlets -->
+  <!-- LOGIN SERVICE -->
   <servlet>
     <servlet-name>loginService</servlet-name>
     <servlet-class>mconta.web.server.LoginServiceImpl</servlet-class>
@@ -23,6 +21,7 @@
     <url-pattern>/app/login.rpc</url-pattern>
   </servlet-mapping>
   
+  <!-- CRUD SERVICE -->
   <servlet>
     <servlet-name>crudService</servlet-name>
     <servlet-class>mconta.web.server.CrudServiceImpl</servlet-class>
@@ -31,12 +30,37 @@
   <servlet-mapping>
     <servlet-name>crudService</servlet-name>
     <url-pattern>/app/crud.rpc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>crudService</servlet-name>
     <url-pattern>/mobile/crud.rpc</url-pattern>
+  </servlet-mapping>
+  
+  <!-- IMAGE SERVICE -->
+  <servlet>
+    <servlet-name>imageService</servlet-name>
+    <servlet-class>mconta.web.server.ImageServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>imageService</servlet-name>
+    <url-pattern>/app/image.rpc</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Upload Servlet -->
+  <servlet>
+    <servlet-name>uploadService</servlet-name>
+    <servlet-class>mconta.web.server.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>uploadService</servlet-name>
+    <url-pattern>/mobile/upload</url-pattern>
   </servlet-mapping>
 
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>app.html</welcome-file>
-  </welcome-file-list>
+  </welcome-file-list>  
 
 </web-app>
