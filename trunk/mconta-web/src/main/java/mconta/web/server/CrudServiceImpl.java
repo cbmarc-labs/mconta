@@ -87,4 +87,15 @@ public class CrudServiceImpl
 		return "All ok !!!";
 		
 	}
+
+	@Override
+	public void delete(Model model) throws Exception {
+		try {
+			dao.delete(model);
+		} catch(Exception e) {
+			throw new ServerException(e);
+			
+		}
+		
+	}
 }
