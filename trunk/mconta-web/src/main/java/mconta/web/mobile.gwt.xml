@@ -18,6 +18,8 @@
 
   <!-- Other module inherits                                      -->
   <inherits name='mconta.domain.Domain' />
+  
+  <inherits name="com.google.gwt.json.JSON" />
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='mconta.web.client.mobile.Mobile' />
