@@ -3,9 +3,7 @@
  */
 package mconta.web.client.app.view;
 
-import mconta.web.client.common.presenter.Presenter;
-
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.HasWidgets;
 
 /**
  * View interface
@@ -14,18 +12,6 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public interface View {
 	
-	/**
-	 * setPresenter
-	 * 
-	 * @param presenter
-	 */
-	public void setPresenter(Presenter presenter);
-	
-	/**
-	 * asWidget
-	 * 
-	 * @return
-	 */
-	Widget asWidget();
+	public void go(HasWidgets widget);
 
 }
