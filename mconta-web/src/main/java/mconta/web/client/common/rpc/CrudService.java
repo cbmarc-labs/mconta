@@ -15,6 +15,7 @@ public interface CrudService extends RemoteService {
 	public Model get(long id, String model) throws Exception;
 	public List<Model> getAll(String model) throws Exception;
 	public void deleteAll(Set<Model> model) throws Exception;
+	public void delete(Model model) throws Exception;
 	
 	public String test(String data) throws Exception;
 	

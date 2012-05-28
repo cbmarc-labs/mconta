@@ -17,6 +17,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public interface CrudServiceAsync {
 	
 	void deleteAll(Set<Model> dto, AsyncCallback<Void> callback);
+	void delete(Model dto, AsyncCallback<Void> callback);
 	void getAll(String model, AsyncCallback<List<Model>> callback);
 	void saveOrUpdate(Model dto, AsyncCallback<Void> callback);
 	void get(long id, String model, AsyncCallback<Model> callback);
