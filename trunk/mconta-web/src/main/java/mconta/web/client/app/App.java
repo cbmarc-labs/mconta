@@ -1,89 +1,43 @@
 package mconta.web.client.app;
 
-import mconta.web.client.app.presenter.impl.MainPresenter;
+import mconta.domain.model.Model;
+import mconta.web.client.app.view.View;
+import mconta.web.client.app.view.impl.EditProductViewImpl;
+import mconta.web.client.app.view.impl.ListProductsViewImpl;
 import mconta.web.client.app.view.impl.MainViewImpl;
-import mconta.web.client.login.presenter.LoginPresenter;
-import mconta.web.client.login.rpc.LoginService;
-import mconta.web.client.login.rpc.LoginServiceAsync;
-import mconta.web.client.login.view.impl.LoginViewImpl;
-import mconta.web.shared.dto.UserDto;
+import mconta.web.client.common.event.ChangePageEvent;
+import mconta.web.client.common.event.ChangePageHandler;
+import mconta.web.client.common.event.EventBus;
+import mconta.web.client.common.utils.JQMUtils;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 
-public class App implements EntryPoint, ValueChangeHandler<String>  {
+public class App implements EntryPoint, ChangePageHandler  {
 	
-	private final LoginServiceAsync loginService = 
-			GWT.create(LoginService.class);
-
+	View mainView = new MainViewImpl();
+	EditProductViewImpl editProductView = new EditProductViewImpl();
+	View listProductsView = new ListProductsViewImpl();
+	
 	public void onModuleLoad() {
+		EventBus.getEventBus().addHandler(ChangePageEvent.getType(), this);
 		
-		loginService.isAuthenticated(new AsyncCallback<UserDto>(){
-
-			public void onFailure(Throwable caught) {
-				Window.alert("Service Error");
-				
-			}
-
-			public void onSuccess(UserDto result) {
-				if(result == null)
-					showLogin();
-				else
-					showApplication();
-				
-			}});
+		mainView.go(RootPanel.get("secondary"));
+		listProductsView.go(RootPanel.get("primary"));
 		
-		History.addValueChangeHandler(this);
+		JQMUtils.triggerCreate("primary");
+		JQMUtils.triggerCreate("secondary");
+	}
+
+	@Override
+	public void onList(ChangePageEvent event) {
+		listProductsView.go(RootPanel.get("primary"));
 		
 	}
 
-	protected void showLogin() {
-		GWT.runAsync(new RunAsyncCallback() {
-
-			public void onFailure(Throwable reason) {
-				Window.alert("runAsync Error");
-				
-			}
-
-			public void onSuccess() {
-				new LoginPresenter(new LoginViewImpl()).go(RootPanel.get("mainContainer"));
-				
-			}});
-		
-	}
-
-	protected void showApplication() {
-		GWT.runAsync(new RunAsyncCallback() {
-
-			public void onFailure(Throwable reason) {
-				Window.alert("runAsync Error");
-				
-			}
-
-			public void onSuccess() {
-				new MainPresenter(new MainViewImpl()).go(RootPanel.get("mainContainer"));
-				
-			}});
-		
-	}
-
-	public void onValueChange(ValueChangeEvent<String> event) {
-		String token = event.getValue();
-		
-		if(token != null) {
-			
-			if(token.startsWith("mconta")) {
-				showApplication();
-			}
-			
-		}
+	@Override
+	public void onEdit(ChangePageEvent event, Model model) {
+		editProductView.go(RootPanel.get("primary"), model);
 		
 	}
 	
