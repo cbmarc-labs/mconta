@@ -7,16 +7,12 @@ import java.util.List;
 
 import mconta.domain.model.Model;
 import mconta.domain.model.Product;
-import mconta.web.client.app.rpc.AppAsyncCallback;
-import mconta.web.client.common.event.EventBus;
+import mconta.web.client.common.rpc.AppAsyncCallback;
 import mconta.web.client.common.rpc.CrudService;
 import mconta.web.client.common.rpc.CrudServiceAsync;
-import mconta.web.client.mobile.event.ChangePageEvent;
-import mconta.web.client.mobile.ui.JQMPage;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
@@ -29,7 +25,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author marc
  *
  */
-public class ListProductsViewImpl extends Composite implements HasHandlers {
+public class ListProductsViewImpl extends Composite {
 	
 	private final CrudServiceAsync service = GWT.create(CrudService.class);
 
@@ -38,7 +34,6 @@ public class ListProductsViewImpl extends Composite implements HasHandlers {
 	
 	List<Model> products;
 	
-	@UiField JQMPage page;
 	@UiField Element list;
 	
 	public ListProductsViewImpl() {
@@ -59,7 +54,7 @@ public class ListProductsViewImpl extends Composite implements HasHandlers {
 				setData(result);
 				
 				String page = getElement().getId();
-				EventBus.getEventBus().fireEvent(new ChangePageEvent(page));
+				//EventBus.getEventBus().fireEvent(new ChangePageEvent(page));
 				
 			}});
 	}

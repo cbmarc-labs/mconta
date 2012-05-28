@@ -1,13 +1,13 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:c="urn:import:mconta.web.client.mobile.ui">
+	xmlns:c="urn:import:mconta.web.client.common.ui">
 	
-	<c:JQMPage ui:field="page">
+	<c:JQMPage>
         
 		<div data-role="header"><h1>Products</h1></div>
 		
-		<div data-role="content">		    
+		<div data-role="content">
 			<ul ui:field='list' data-role="listview" data-inset="true"></ul>
 		</div>
 		
