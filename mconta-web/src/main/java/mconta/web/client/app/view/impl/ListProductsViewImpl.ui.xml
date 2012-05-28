@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:mconta.web.client.common.ui">
+	
+    <g:HTMLPanel>
+        
+        <ul data-role="listview" data-inset="true">
+            
+            <li>
+        		<div>
+        			<c:JQMButton ui:field="newButton" dataicon="plus" datainline="true">Nuevo</c:JQMButton>
+        		</div>
+        	</li>
+        
+        </ul>
+        
+        <c:JQMList ui:field="list"></c:JQMList>
+        
+	</g:HTMLPanel>
+	
+</ui:UiBinder> 

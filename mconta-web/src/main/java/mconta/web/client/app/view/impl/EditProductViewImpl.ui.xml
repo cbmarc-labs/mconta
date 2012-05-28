@@ -1,0 +1,50 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:mconta.web.client.common.ui">
+	
+	<ui:style>
+    	.hidden { visibility:hidden;position:absolute; }
+		div img, img { cursor:pointer;margin-right:10px;max-width:70px;max-height:70px; }
+  	</ui:style>
+	
+	<g:HTMLPanel>
+	    
+	    	<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Edición</li>
+				<li>			
+					<div data-role="fieldcontain">
+						<label class="ui-input-text">Nombre:</label>
+						<g:TextBox ui:field="nameField"></g:TextBox>
+					</div>
+				</li>
+				<li>
+					<div data-role="fieldcontain">
+						<label class="ui-input-text">Descripcion:</label>
+						<g:TextBox ui:field="descriptionField"></g:TextBox>
+					</div>
+				</li>
+				<li>
+					<div data-role="fieldcontain">
+						<label class="ui-input-text">Imagen:</label>
+						<g:Image ui:field="imageField"/>
+					</div>
+					<c:JQMCollapsible ui:field="imageGallery" text="Galeria">
+					    <g:HTMLPanel ui:field="imageGalleryContent"></g:HTMLPanel>
+					</c:JQMCollapsible>
+				</li>
+				<li>
+					<div data-role="fieldcontain" style="text-align:right">
+					    <c:JQMButton ui:field="acceptButton" dataicon="check" datainline="true">Aceptar</c:JQMButton>
+					</div>
+				</li>
+				
+			</ul>
+			
+			<g:FormPanel ui:field="formPanel" styleName="{style.hidden}"> 
+				<g:FileUpload ui:field="fileUpload" name="file"/>
+			</g:FormPanel>
+	    
+    </g:HTMLPanel>
+    
+</ui:UiBinder> 
