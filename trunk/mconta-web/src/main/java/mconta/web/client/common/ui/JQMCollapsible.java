@@ -48,7 +48,7 @@ public class JQMCollapsible extends ComplexPanel implements InsertPanel {
 	protected void onAttach() {
 		super.onAttach();
 		
-		// TODO a better solution?
+		// TODO: Really total hack! There's gotta be a better way...
 		if(!triggered)
 			trigger(this, getElement().getId());
 		triggered = true;
