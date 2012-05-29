@@ -20,10 +20,4 @@ public class ListProductsPresenter implements Presenter {
 		
 	}
 
-	@Override
-	public void bind() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
