@@ -30,9 +30,9 @@ public class ImageServiceImpl
 		File dir = new File(dirName);
 		File[] files = dir.listFiles();
 		
-		for (int it = 0; it < files.length; it++) {
-			list.add(files[it].getName());
-			
+		if(files != null) {			
+			for (int it = 0; it < files.length; it++)
+				list.add(files[it].getName());
 		}
 		
 		return list;
