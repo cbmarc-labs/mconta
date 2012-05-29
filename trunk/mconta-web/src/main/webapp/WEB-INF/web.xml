@@ -55,7 +55,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>uploadService</servlet-name>
-    <url-pattern>/mobile/upload</url-pattern>
+    <url-pattern>/app/upload</url-pattern>
   </servlet-mapping>
 
   <!-- Default page to serve -->
