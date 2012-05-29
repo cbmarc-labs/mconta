@@ -86,7 +86,7 @@ public class UploadServlet extends HttpServlet {
 						throw new IOException("The file already exists in repository.");
 					}
 				} catch (Exception e) {
-					resp.setStatus(HttpServletResponse.SC_CREATED);
+					resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 					resp.setContentType("text/html");
 					resp.getWriter().printf("{ \"error\": \"%s\" }", e.getMessage());
 					resp.flushBuffer();
