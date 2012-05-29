@@ -3,13 +3,13 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:c="urn:import:mconta.web.client.common.ui">
 	
-	<c:JQMPage ui:field="main">
+	<g:HTMLPanel>
 	    
-	    <div data-role="content">
-	        <g:HTMLPanel ui:field="secondary"></g:HTMLPanel>
-	        <g:HTMLPanel ui:field="primary"></g:HTMLPanel>
-		</div>
-	    
-	</c:JQMPage>
+		<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider">Menu Principal</li>
+			<li><g:Anchor ui:field="menu1">Productos</g:Anchor></li>
+		</ul>
+		
+	</g:HTMLPanel>
 	
 </ui:UiBinder> 

@@ -35,7 +35,7 @@
 				</li>
 				<li>
 					<div data-role="fieldcontain" style="text-align:right">
-					    <c:JQMButton ui:field="acceptButton" dataicon="check" datainline="true">Aceptar</c:JQMButton>
+					    <c:JQMButton ui:field="saveButton" dataicon="check" datainline="true">Aceptar</c:JQMButton>
 					</div>
 				</li>
 				
